@@ -1,3 +1,4 @@
+// src/App.jsx
 import React from 'react';
 import Header from './components/Header';
 import Squares from './components/Squares';
@@ -6,8 +7,7 @@ import GradientText from './components/GradientText';
 import { AnimatedGradientTextDemo } from './components/AnimatedGradientTextDemo';
 import Lanyard from './components/Lanyard/Lanyard';
 import Skills from './components/Skills';
-import { ButtonMovingBorder } from './components/MovingBorderButton'; // Pastikan untuk mengimpor komponen Button
-
+import { ButtonMovingBorder } from './components/MovingBorderButton';
 
 function App() {
   return (
@@ -33,33 +33,28 @@ function App() {
           <div className="flex-1 text-white space-y-6" style={{ marginTop: '100px' }}>
             <AnimatedGradientTextDemo />
             <h1 className="text-4xl md:text-4xl font-moderniz font-bold leading-tight select-none"
-    style={{
-      color: "#00ffdc",
-      textShadow: `
-        2px 2px 0 #000754,
-        4px 4px 0 #4079ff,
-        0 4px 12px #40ffaa,
-        0 1px 0 #00ffdc
-      `
-    }}>
-  WELCOME TO MY
-  <span style={{ display: 'block', marginTop: '0.4em' }}>PORTFOLIO</span>
-</h1>
+              style={{
+                color: "#00ffdc",
+                textShadow: `
+                  2px 2px 0 #000754,
+                  4px 4px 0 #4079ff,
+                  0 4px 12px #40ffaa,
+                  0 1px 0 #00ffdc
+                `
+              }}>
+              WELCOME TO MY
+              <span style={{ display: 'block', marginTop: '0.4em' }}>PORTFOLIO</span>
+            </h1>
 
             <GradientText
               colors={["#40f2ffff", "#4079ff", "#40fffcff", "#4079ff", "#40f9ffff"]}
               animationSpeed={3}
-              showBorder={false}
               className="custom-class font-cascadia font-bold"
-            >
-              FRONT END DEVELOPER & 3D DESIGNER
-            </GradientText>
+            />
 
             <TextGenerateEffect words={'I craft responsive and visually engaging websites using React, Tailwind CSS, and modern web technologies.'} />
             
-            {/* --- Komponen Skills Ditambahkan Di Sini --- */}
             <Skills />
-            {/* ----------------------------------------- */}
 
             <div className="flex flex-col sm:flex-row gap-4 mt-8">
               <ButtonMovingBorder
