@@ -1,6 +1,9 @@
 import React, { useState } from 'react';
 import bangzenLogo from '../assets/images/BGZENBGIJObulat.png';
 
+const CLIP_PATH =
+  'polygon(0 0, 100% 0, 100% 80%, 68% 80%, 64% 100%, 36% 100%, 32% 80%, 0 80%)';
+
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
@@ -18,60 +21,91 @@ const Header = () => {
 
   return (
     <>
-    <div className="animate-shadowFade drop-shadow-[0_6px_3px_rgba(0,255,255,0.4)]">
-      <header className="bg-[#11142F] pt-3 pb-3 [clip-path:polygon(0_0,_100%_0,_100%_80%,_68%_80%,_64%_100%,_36%_100%,_32%_80%,_0_80%)]">
-        <nav className="container mx-auto flex items-center justify-around flex-wrap pb-4">
-          
-          {/* ---- SISI KIRI ---- */}
-          <div className="flex items-center">
-            {/* Navigasi Kiri (Desktop) */}
-            <ul className="hidden md:flex items-center list-none gap-x-20"> {/* PERUBAHAN DI SINI */}
-              <NavLink href="/#">Home</NavLink>
-              <NavLink href="/about">About</NavLink>
-            </ul>
-            {/* Logo (Mobile) */}
-            <a href="/#" className="md:hidden flex items-center gap-3">
-              <img src={bangzenLogo} alt="Bangzen Logo" className="h-12 w-12" />
-            </a>
-          </div>
+      <div className="fixed top-0 left-0 w-full z-50 pointer-events-none">
+        {/* Drop Shadow Gradient Animated */}
+        <div
+          className="pointer-events-none absolute left-0 right-0 z-10"
+          style={{
+            top: '0',
+            height: '90px',
+            WebkitClipPath: CLIP_PATH,
+            clipPath: CLIP_PATH,
+            background: 'linear-gradient(90deg, #00fff0, #00ffdc, #4079ff, #40ffaa, #00fff0)',
+            backgroundSize: '300% 100%',
+            animation: 'gradientShadowMove 6s linear infinite',
+            opacity: 1,
+            filter: 'drop-shadow(0 16px 24px rgba(64,255,170,0.35))',
+          }}
+        ></div>
 
-          {/* ---- TENGAH (KHUSUS DESKTOP) ---- */}
-          <div className="hidden md:flex items-center gap-3">
-            <img src={bangzenLogo} alt="Bangzen Logo" className="h-12 w-12" />
-            <div className="hidden sm:block">
-              <h1 className="font-moderniz text-base text-[#00ffdc]">Zain Ahmad Fahrezi</h1>
-              <p className="font-moderniz text-[10px] text-[#000754]" style={{ textShadow: '0.5px 0.5px 0 #00ffdc, -0.5px -0.5px 0 #00ffdc, 0.5px -0.5px 0 #00ffdc, -0.5px 0.5px 0 #00ffdc' }}>
-                Let's see the awesome Experience
-              </p>
+        {/* Navbar */}
+        <header
+          className="bg-[#11142F] pt-3 pb-3 relative z-20 pointer-events-auto"
+          style={{
+            WebkitClipPath: CLIP_PATH,
+            clipPath: CLIP_PATH,
+          }}
+        >
+          <nav className="container mx-auto flex items-center justify-around flex-wrap pb-4">
+            {/* ---- SISI KIRI ---- */}
+            <div className="flex items-center">
+              {/* Navigasi Kiri (Desktop) */}
+              <ul className="hidden md:flex items-center list-none gap-x-20">
+                <NavLink href="/#">Home</NavLink>
+                <NavLink href="/about">About</NavLink>
+              </ul>
+              {/* Logo (Mobile) */}
+              <a href="/#" className="md:hidden flex items-center gap-3">
+                <img src={bangzenLogo} alt="Bangzen Logo" className="h-12 w-12" />
+              </a>
             </div>
-          </div>
 
-          {/* ---- SISI KANAN ---- */}
-          <div className="flex items-center">
-            {/* Navigasi Kanan (Desktop) */}
-            <ul className="hidden md:flex items-center list-none gap-16"> {/* PERUBAHAN DI SINI */}
-              <NavLink href="/project">Project</NavLink>
-              <NavLink href="/contact">Contact</NavLink>
-            </ul>
-            {/* Tombol Hamburger (Mobile) */}
-            <button onClick={() => setIsMenuOpen(!isMenuOpen)} className="md:hidden text-[#00ffdc] text-3xl">
-              &#9776;
-            </button>
-          </div>
+            {/* ---- TENGAH (KHUSUS DESKTOP) ---- */}
+            <div className="hidden md:flex items-center gap-3">
+              <img src={bangzenLogo} alt="Bangzen Logo" className="h-12 w-12" />
+              <div className="hidden sm:block">
+                <h1 className="font-moderniz text-base text-[#00ffdc]">Zain Ahmad Fahrezi</h1>
+                <p className="font-moderniz text-[10px] text-[#000754]" style={{ textShadow: '0.5px 0.5px 0 #00ffdc, -0.5px -0.5px 0 #00ffdc, 0.5px -0.5px 0 #00ffdc, -0.5px 0.5px 0 #00ffdc' }}>
+                  Let's see the awesome Experience
+                </p>
+              </div>
+            </div>
 
-          {/* ---- Menu Dropdown (Mobile) ---- */}
-          {isMenuOpen && (
-            <ul className="w-full flex flex-col items-center basis-full md:hidden mt-4 list-none space-y-2"> {/* PERUBAHAN DI SINI */}
-              <NavLink href="/#">Home</NavLink>
-              <NavLink href="/about">About</NavLink>
-              <NavLink href="/project">Project</NavLink>
-              <NavLink href="/contact">Contact</NavLink>
-            </ul>
-          )}
-        </nav>
-      </header>
-    </div>
+            {/* ---- SISI KANAN ---- */}
+            <div className="flex items-center">
+              {/* Navigasi Kanan (Desktop) */}
+              <ul className="hidden md:flex items-center list-none gap-16">
+                <NavLink href="/project">Project</NavLink>
+                <NavLink href="/contact">Contact</NavLink>
+              </ul>
+              {/* Tombol Hamburger (Mobile) */}
+              <button onClick={() => setIsMenuOpen(!isMenuOpen)} className="md:hidden text-[#00ffdc] text-3xl pointer-events-auto">
+                &#9776;
+              </button>
+            </div>
 
+            {/* ---- Menu Dropdown (Mobile) ---- */}
+            {isMenuOpen && (
+              <ul className="w-full flex flex-col items-center basis-full md:hidden mt-4 list-none space-y-2">
+                <NavLink href="/#">Home</NavLink>
+                <NavLink href="/about">About</NavLink>
+                <NavLink href="/project">Project</NavLink>
+                <NavLink href="/contact">Contact</NavLink>
+              </ul>
+            )}
+          </nav>
+        </header>
+      </div>
+
+      {/* Animasi gradient keyframes */}
+      <style>
+        {`
+          @keyframes gradientShadowMove {
+            0% { background-position: 0% 50%; }
+            100% { background-position: 100% 50%; }
+          }
+        `}
+      </style>
     </>
   );
 };

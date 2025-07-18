@@ -28,30 +28,26 @@ const Squares = ({
 
     const draw = (timestamp) => {
       if (!ctx) return;
-      
-      timeRef.current = timestamp / 5000; // Dibagi untuk memperlambat rotasi
 
-      // 1. Hapus canvas
+      timeRef.current = timestamp / 5000;
+
       ctx.clearRect(0, 0, canvas.width, canvas.height);
-      
-      // 2. LOGIKA BARU: Membuat gradien berputar dengan halus
-      const angle = timeRef.current;
-      const r = canvas.width * 0.75; // Radius pergerakan titik gradien
 
-      // Kalkulasi titik awal dan akhir untuk gradien yang berputar
+      const angle = timeRef.current;
+      const r = canvas.width * 0.75;
+
       const x1 = canvas.width / 2 + Math.cos(angle) * r;
       const y1 = canvas.height / 2 + Math.sin(angle) * r;
       const x2 = canvas.width / 2 - Math.cos(angle) * r;
       const y2 = canvas.height / 2 - Math.sin(angle) * r;
 
       const gradient = ctx.createLinearGradient(x1, y1, x2, y2);
-      gradient.addColorStop(0, "#000428"); // Warna gelap
-      gradient.addColorStop(1, "#002545ff"); // Warna terang
-      
+      gradient.addColorStop(0, "#000428");
+      gradient.addColorStop(1, "#002545ff");
+
       ctx.fillStyle = gradient;
       ctx.fillRect(0, 0, canvas.width, canvas.height);
 
-      // 3. Gambar garis grid dan efek hover di atas background
       const startX = Math.floor(gridOffset.current.x / squareSize) * squareSize;
       const startY = Math.floor(gridOffset.current.y / squareSize) * squareSize;
 
@@ -76,7 +72,6 @@ const Squares = ({
     };
 
     const updateAnimation = (timestamp) => {
-      // Pergerakan grid
       const effectiveSpeed = Math.max(speed, 0.1);
       switch (direction) {
         case "right":
@@ -103,10 +98,22 @@ const Squares = ({
       requestRef.current = requestAnimationFrame(updateAnimation);
     };
 
+    // Ambil posisi mouse dari window, bukan dari canvas
     const handleMouseMove = (event) => {
       const rect = canvas.getBoundingClientRect();
       const mouseX = event.clientX - rect.left;
       const mouseY = event.clientY - rect.top;
+
+      // Jika mouse di luar canvas, jangan highlight
+      if (
+        event.clientX < rect.left ||
+        event.clientX > rect.right ||
+        event.clientY < rect.top ||
+        event.clientY > rect.bottom
+      ) {
+        hoveredSquareRef.current = null;
+        return;
+      }
 
       const startX = Math.floor(gridOffset.current.x / squareSize) * squareSize;
       const startY = Math.floor(gridOffset.current.y / squareSize) * squareSize;
@@ -114,24 +121,30 @@ const Squares = ({
       const hoveredSquareX = Math.floor((mouseX + gridOffset.current.x - startX) / squareSize);
       const hoveredSquareY = Math.floor((mouseY + gridOffset.current.y - startY) / squareSize);
 
-      if (!hoveredSquareRef.current || hoveredSquareRef.current.x !== hoveredSquareX || hoveredSquareRef.current.y !== hoveredSquareY) {
+      if (
+        !hoveredSquareRef.current ||
+        hoveredSquareRef.current.x !== hoveredSquareX ||
+        hoveredSquareRef.current.y !== hoveredSquareY
+      ) {
         hoveredSquareRef.current = { x: hoveredSquareX, y: hoveredSquareY };
       }
     };
 
-    const handleMouseLeave = () => {
+    const handleMouseLeave = (event) => {
       hoveredSquareRef.current = null;
     };
 
-    canvas.addEventListener("mousemove", handleMouseMove);
-    canvas.addEventListener("mouseleave", handleMouseLeave);
+    // Ganti event listener ke window
+    window.addEventListener("mousemove", handleMouseMove);
+    window.addEventListener("mouseout", handleMouseLeave);
+
     requestRef.current = requestAnimationFrame(updateAnimation);
 
     return () => {
       window.removeEventListener("resize", resizeCanvas);
       if (requestRef.current) cancelAnimationFrame(requestRef.current);
-      canvas.removeEventListener("mousemove", handleMouseMove);
-      canvas.removeEventListener("mouseleave", handleMouseLeave);
+      window.removeEventListener("mousemove", handleMouseMove);
+      window.removeEventListener("mouseout", handleMouseLeave);
     };
   }, [direction, speed, borderColor, hoverFillColor, squareSize]);
 
