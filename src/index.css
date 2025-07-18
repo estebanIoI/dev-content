@@ -1,0 +1,53 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Font kustom Anda berada di bawahnya */
+@font-face {
+    font-family: 'Moderniz';
+    src: url(./assets/fonts/Moderniz.otf) format('opentype');
+}
+
+@font-face {
+    font-family: 'Bauhaus93';
+    src: url(./assets/fonts/BAUHS93.ttf) format('truetype');
+}
+
+@layer utilities {
+  @keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0; }
+  }
+
+  @keyframes fade-in-up {
+    from {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes reveal {
+    from {
+      width: 0%;
+    }
+    to {
+      width: 100%;
+    }
+  }
+
+  .animate-blink {
+    animation: blink 0.8s infinite reverse;
+  }
+  
+  .animate-fade-in-up {
+    animation: fade-in-up 0.5s forwards;
+  }
+
+  .animate-reveal {
+    animation: reveal 2s linear forwards;
+  }
+}
