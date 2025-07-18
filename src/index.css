@@ -28,8 +28,12 @@
 
 @layer utilities {
   @keyframes blink {
-    0%, 100% { opacity: 1; }
-    50% { opacity: 0; }
+    from, to {
+      color: transparent;
+    }
+    50% {
+      color: white;
+    }
   }
 
   @keyframes fade-in-up {
@@ -53,7 +57,7 @@
   }
 
   .animate-blink {
-    animation: blink 0.8s infinite reverse;
+    animation: blink 1s step-end infinite;
   }
   
   .animate-fade-in-up {
