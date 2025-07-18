@@ -6,6 +6,7 @@ import GradientText from './components/GradientText';
 import { AnimatedGradientTextDemo } from './components/AnimatedGradientTextDemo';
 import Lanyard from './components/Lanyard/Lanyard';
 import Skills from './components/Skills';
+import { ButtonMovingBorder } from './components/MovingBorderButton'; // Pastikan untuk mengimpor komponen Button
 
 
 function App() {
@@ -26,35 +27,30 @@ function App() {
       <Header />
 
       {/* MAIN DIBERI MARGIN-TOP */}
-      <main className="relative z-0 px-8 max-w-7xl mx-auto" style={{ marginTop: '70px' }}>
+      <main className="relative z-0 px-8 max-w-7xl mx-auto" style={{ marginTop: '40px' }}>
         <div className="flex flex-col md:flex-row items-center gap-10" >
           {/* KIRI: TEXT */}
           <div className="flex-1 text-white space-y-6" style={{ marginTop: '100px' }}>
             <AnimatedGradientTextDemo />
-            <h1 className="text-4xl md:text-5xl font-bold">
-              <span className="bg-clip-text text-transparent"
-                style={{
-                  backgroundImage: "linear-gradient(to right, rgba(0, 255, 255, 1), rgba(0, 255, 255, 0.59))",
-                  animation: "shadowFade 5s infinite ease-in-out",
-                  filter: "drop-shadow(-1px 6px 3px rgba(0, 255, 255, 0.5))",
-                }}>
-                WELCOME TO MY
-              </span>
-              <span className="bg-clip-text text-transparent"
-                style={{
-                  backgroundImage: "linear-gradient(to right, rgba(0, 255, 255, 1), rgba(0, 255, 255, 0.59))",
-                  animation: "shadowFade 5s infinite ease-in-out",
-                  filter: "drop-shadow(-1px 6px 3px rgba(0, 255, 255, 0.5))",
-                }}>
-                {" "}PORTFOLIO
-              </span>
-            </h1>
+            <h1 className="text-4xl md:text-4xl font-moderniz font-bold leading-tight select-none"
+    style={{
+      color: "#00ffdc",
+      textShadow: `
+        2px 2px 0 #000754,
+        4px 4px 0 #4079ff,
+        0 4px 12px #40ffaa,
+        0 1px 0 #00ffdc
+      `
+    }}>
+  WELCOME TO MY
+  <span style={{ display: 'block', marginTop: '0.4em' }}>PORTFOLIO</span>
+</h1>
 
             <GradientText
-              colors={["#40ffaa", "#4079ff", "#40ffaa", "#4079ff", "#40ffaa"]}
+              colors={["#40f2ffff", "#4079ff", "#40fffcff", "#4079ff", "#40f9ffff"]}
               animationSpeed={3}
               showBorder={false}
-              className="custom-class"
+              className="custom-class font-cascadia font-bold"
             >
               FRONT END DEVELOPER & 3D DESIGNER
             </GradientText>
@@ -65,13 +61,25 @@ function App() {
             <Skills />
             {/* ----------------------------------------- */}
 
-            <div className="flex gap-4 mt-8"> {/* Margin atas disesuaikan untuk memberi ruang */}
-              <a href="#projects" className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition">
+            <div className="flex flex-col sm:flex-row gap-4 mt-8">
+              <ButtonMovingBorder
+                as="a"
+                href="#projects"
+                duration={3000}
+                borderRadius="0.75rem"
+                className="bg-slate-900/[0.8] border border-slate-800 text-white font-semibold transition-all duration-300 hover:shadow-[0_0_24px_8px_#40ffaa]"
+              >
                 View Projects
-              </a>
-              <a href="#contact" className="px-4 py-2 border border-blue-600 text-blue-600 rounded-lg hover:bg-blue-100 transition">
+              </ButtonMovingBorder>
+              <ButtonMovingBorder
+                as="a"
+                href="#contact"
+                duration={3000}
+                borderRadius="0.75rem"
+                className="bg-slate-900/[0.8] border border-slate-800 text-white font-semibold transition-all duration-300 hover:shadow-[0_0_24px_8px_#40ffaa]"
+              >
                 Contact Me
-              </a>
+              </ButtonMovingBorder>
             </div>
           </div>
 

@@ -13,6 +13,19 @@
     src: url(./assets/fonts/BAUHS93.ttf) format('truetype');
 }
 
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cascadia+Code&display=swap');
+
+@layer base {
+  .font-poppins {
+    font-family: 'Poppins', sans-serif;
+  }
+
+  .font-cascadia {
+    font-family: 'Cascadia Code', monospace;
+  }
+}
+
 @layer utilities {
   @keyframes blink {
     0%, 100% { opacity: 1; }

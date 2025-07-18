@@ -44,7 +44,7 @@ const TextGenerateEffect = ({
   };
 
   return (
-    <div className={cn("font-poppins", className)}>
+    <div className={cn("font-cascadia", className)}>
       <div className="mt-4">
         <div className="dark:text-white text-black text-md leading-snug tracking-wide">
           {renderWords()}
