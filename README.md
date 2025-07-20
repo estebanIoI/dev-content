@@ -1,4 +1,4 @@
-# 🚀 React + Vite Project
+# PROJEK PORTFOLIO ZAIN AHMAD FAHREZI
 
 Ini adalah proyek React yang dikembangkan menggunakan Vite — sebuah build tool modern dengan performa tinggi, dukungan Hot Module Replacement (HMR), dan waktu pengembangan yang cepat.
 
