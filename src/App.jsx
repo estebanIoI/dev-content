@@ -1,5 +1,5 @@
 // src/App.jsx
-import React, { useState } from 'react';
+import React from 'react';
 import Header from './components/Header';
 import Squares from './components/Squares';
 import TextGenerateEffect from "./components/text-generate-effect";
@@ -8,18 +8,17 @@ import { AnimatedGradientTextDemo } from './components/AnimatedGradientTextDemo'
 import Lanyard from './components/Lanyard/Lanyard';
 import Skills from './components/Skills';
 import { ButtonMovingBorder } from './components/MovingBorderButton';
-import { motion, AnimatePresence } from "framer-motion"; // Import AnimatePresence dari framer-motion
+import { motion } from "framer-motion";
+// Menambahkan FaCode, FaCertificate, FaGlobe, FaArrowRight
 import { FaGithub, FaInstagram, FaLinkedin, FaDownload, FaBriefcase, FaCode, FaCertificate, FaGlobe, FaArrowRight } from 'react-icons/fa';
 import ProfileCard from './components/ProfileCard/ProfileCard';
 import ZAINFIX from './assets/images/ZAINFIX.png';
 import { IconCloud } from './components/IconCloud';
 import Spline from '@splinetool/react-spline';
 import { VelocityScroll } from './components/VelocityScroll';
+import ProjectSection from './components/ProjectSection';
 
 function App() {
-  // State untuk mengelola tab yang aktif
-  const [activeTab, setActiveTab] = useState('Projects');
-
   // Data untuk card statistik
   const stats = [
     {
@@ -40,13 +39,6 @@ function App() {
       title: "YEARS OF EXPERIENCE",
       description: "Continuous learning journey",
     },
-  ];
-
-  // Data untuk tab
-  const tabs = [
-    { id: 'Projects', label: 'Projects' },
-    { id: 'Certificate', label: 'Certificate' },
-    { id: 'Tech Stack', label: 'Tech Stack' },
   ];
 
   return (
@@ -105,12 +97,12 @@ function App() {
           </div>
         </section>
 
-        {/* BAGIAN ABOUT ME */}
+        {/* BAGIAN ABOUT ME BARU (SESUAI GAMBAR DAN STYLE WEB) */}
         <section
-            id="about"
-            className="py-12 md:py-18 gap-0 w-full mx-0 px-0"
-            style={{ width: "100vw", position: "relative", left: "50%", right: "50%", marginLeft: "-50vw", marginRight: "-50vw" }}
-        >
+              id="about"
+              className="py-12 md:py-18 gap-0 w-full mx-0 px-0"
+              style={{ width: "100vw", position: "relative", left: "50%", right: "50%", marginLeft: "-50vw", marginRight: "-50vw" }}
+            >
           <motion.div
             initial={{ opacity: 0, y: 50 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -119,15 +111,50 @@ function App() {
             className="text-center"
           >
             <div className="relative flex w-full flex-col items-center justify-center overflow-hidden mb-20">
-              <VelocityScroll defaultVelocity={3} numRows={1} className="max-w-full">
-                <span className="font-moderniz font-bold" style={{ fontSize: "2.5rem", lineHeight: "1.1", color: "#00ffdc", textShadow: "2px 2px 0 #000754, 4px 4px 0 #4079ff, 0 4px 12px #40ffaa, 0 1px 0 #00ffdc", background: "none", WebkitBackgroundClip: "unset", WebkitTextFillColor: "unset", animation: "none" }}>
+              {/* Atas: Bergerak ke kanan */}
+              <VelocityScroll
+                defaultVelocity={3}
+                numRows={1}
+                className="max-w-full"
+              >
+                <span
+                  className="font-moderniz font-bold"
+                  style={{
+                    fontSize: "2.5rem",
+                    lineHeight: "1.1",
+                    color: "#00ffdc",
+                    textShadow: "2px 2px 0 #000754, 4px 4px 0 #4079ff, 0 4px 12px #40ffaa, 0 1px 0 #00ffdc",
+                    background: "none",
+                    WebkitBackgroundClip: "unset",
+                    WebkitTextFillColor: "unset",
+                    animation: "none"
+                  }}
+                >
                   ABOUT <span style={{ color: "#fff" }}>ME</span>
                 </span>
               </VelocityScroll>
+              {/* Gradasi kiri-kanan */}
               <div className="pointer-events-none absolute inset-y-0 left-0 w-1/4 bg-gradient-to-r from-[#060010]"></div>
               <div className="pointer-events-none absolute inset-y-0 right-0 w-1/4 bg-gradient-to-l from-[#060010]"></div>
-              <VelocityScroll defaultVelocity={-3} numRows={1} className="max-w-full">
-                <span className="font-moderniz font-bold" style={{ fontSize: "2.5rem", lineHeight: "1.1", color: "#00ffdc", textShadow: "2px 2px 0 #000754, 4px 4px 0 #4079ff, 0 4px 12px #40ffaa, 0 1px 0 #00ffdc", background: "none", WebkitBackgroundClip: "unset", WebkitTextFillColor: "unset", animation: "none" }}>
+              {/* Bawah: Bergerak ke kiri */}
+              <VelocityScroll
+                defaultVelocity={-3}
+                numRows={1}
+                className="max-w-full"
+              >
+                <span
+                  className="font-moderniz font-bold"
+                  style={{
+                    fontSize: "2.5rem",
+                    lineHeight: "1.1",
+                    color: "#00ffdc",
+                    textShadow: "2px 2px 0 #000754, 4px 4px 0 #4079ff, 0 4px 12px #40ffaa, 0 1px 0 #00ffdc",
+                    background: "none",
+                    WebkitBackgroundClip: "unset",
+                    WebkitTextFillColor: "unset",
+                    animation: "none"
+                  }}
+                >
                   ABOUT <span style={{ color: "#fff" }}>ME</span>
                 </span>
               </VelocityScroll>
@@ -136,112 +163,122 @@ function App() {
               ✧ Passionate about coding and creative technology ✧
             </p>
           </motion.div>
-          
-          <style>{`@keyframes gradientMove { 0% { background-position: 0% 50%; } 100% { background-position: 200% 50%; } }`}</style>
+          <style>
+              {`
+              @keyframes gradientMove {
+                0% { background-position: 0% 50%; }
+                100% { background-position: 200% 50%; }
+              }
+              `}
+          </style>
 
           <div className="flex flex-col md:flex-row items-center justify-center">
-            <motion.div initial={{ opacity: 0, scale: 0.8 }} whileInView={{ opacity: 1, scale: 1 }} viewport={{ once: true, amount: 0.3 }} transition={{ duration: 0.9, ease: "easeOut", delay: 0.2 }} className="md:w-1/3 flex justify-center">
+            {/* KIRI: Spline 3D */}
+            <motion.div
+              initial={{ opacity: 0, scale: 0.8 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              viewport={{ once: true, amount: 0.3 }}
+              transition={{ duration: 0.9, ease: "easeOut", delay: 0.2 }}
+              className="md:w-1/3 flex justify-center"
+            >
               <div className="w-full h-[530px] flex items-center justify-center">
                 <Spline scene="https://prod.spline.design/FcZ66SFMX1YbF-0I/scene.splinecode" />
               </div>
             </motion.div>
-            <motion.div initial={{ opacity: 0, x: -50 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true, amount: 0.3 }} transition={{ duration: 0.9, ease: "easeOut" }} className="md:w-1/2 text-white text-center md:text-left">
-              <p className="text-2xl text-gray-300 font-moderniz my" style={{ textShadow: "2px 2px 0 #000754, 4px 4px 0 #4079ff, 0 4px 12px #40ffaa, 0 1px 0 #00ffdc" }}>Hello, I'm</p>
-              <h3 className="text-5xl md:text-6xl font-bold text-white my-2 font-moderniz" style={{ textShadow: "2px 2px 0 #000754, 4px 4px 0 #4079ff, 0 4px 12px #40ffaa, 0 1px 0 #00ffdc" }}>Zain Ahmad Fahrezi</h3>
+
+            {/* KANAN: Teks & Tombol */}
+            <motion.div
+              initial={{ opacity: 0, x: -50 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true, amount: 0.3 }}
+              transition={{ duration: 0.9, ease: "easeOut" }}
+              className="md:w-1/2 text-white text-center md:text-left"
+            >
+              <p className="text-2xl text-gray-300 font-moderniz my" style={{
+    textShadow: "2px 2px 0 #000754, 4px 4px 0 #4079ff, 0 4px 12px #40ffaa, 0 1px 0 #00ffdc"
+  }}>Hello, I'm</p>
+  <h3 className="text-5xl md:text-6xl font-bold text-white my-2 font-moderniz" style={{
+    textShadow: "2px 2px 0 #000754, 4px 4px 0 #4079ff, 0 4px 12px #40ffaa, 0 1px 0 #00ffdc"
+  }}>Zain Ahmad Fahrezi</h3>
               <p className="text-white/80 leading-relaxed mt-4 font-cascadia">
                 Saya adalah mahasiswa Teknik Informatika di Universitas Indo Global Mandiri Palembang yang memiliki minat besar dalam pengembangan Front-End dan teknologi web modern. Saya selalu bersemangat untuk belajar hal baru dan menciptakan solusi digital yang inovatif.
               </p>
-              <div className="my-6 bg-slate-900/50 border-l-4 border-[#00ffdc] p-4 rounded-r-lg italic text-white/70 font-cascadia">"Whoever strives shall succeed."</div>
+              <div className="my-6 bg-slate-900/50 border-l-4 border-[#00ffdc] p-4 rounded-r-lg italic text-white/70 font-cascadia">
+                "Whoever strives shall succeed."
+              </div>
               <div className="flex flex-col sm:flex-row gap-4 mt-8 justify-center md:justify-start">
-                <ButtonMovingBorder as="a" href="/cv.pdf" download duration={3000} borderRadius="0.75rem" className="bg-slate-900/[0.8] border border-slate-800 text-white font-semibold flex items-center justify-center gap-2 transition-all duration-300 hover:shadow-[0_0_24px_8px_#40ffaa]"><FaDownload />Download CV</ButtonMovingBorder>
-                <ButtonMovingBorder as="a" href="#projects" duration={3000} borderRadius="0.75rem" className="bg-slate-900/[0.8] border border-slate-800 text-white font-semibold flex items-center justify-center gap-2 transition-all duration-300 hover:shadow-[0_0_24px_8px_#40ffaa]"><FaBriefcase />View Projects</ButtonMovingBorder>
+                <ButtonMovingBorder
+                  as="a"
+                  href="/cv.pdf"
+                  download
+                  duration={3000}
+                  borderRadius="0.75rem"
+                  className="bg-slate-900/[0.8] border border-slate-800 text-white font-semibold flex items-center justify-center gap-2 transition-all duration-300 hover:shadow-[0_0_24px_8px_#40ffaa]"
+                >
+                  <FaDownload />
+                  Download CV
+                </ButtonMovingBorder>
+                <ButtonMovingBorder
+                  as="a"
+                  href="#projects"
+                  duration={3000}
+                  borderRadius="0.75rem"
+                  className="bg-slate-900/[0.8] border border-slate-800 text-white font-semibold flex items-center justify-center gap-2 transition-all duration-300 hover:shadow-[0_0_24px_8px_#40ffaa]"
+                >
+                  <FaBriefcase />
+                  View Projects
+                </ButtonMovingBorder>
               </div>
             </motion.div>
           </div>
           
-          <motion.div initial={{ opacity: 0, y: 50 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: 0.2 }} transition={{ duration: 0.8, ease: "easeOut", delay: 0.4 }} className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto px-8 mt-24">
+          {/* ======================================= */}
+          {/* DIV BARU YANG DITAMBAHKAN MULAI DI SINI */}
+          {/* ======================================= */}
+          <motion.div 
+            initial={{ opacity: 0, y: 50 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.2 }}
+            transition={{ duration: 0.8, ease: "easeOut", delay: 0.4 }}
+            className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto mt-10"
+          >
             {stats.map((stat, index) => (
-              <div key={index} className="group relative p-6 rounded-2xl bg-gradient-to-br from-slate-900/80 to-slate-950/70 border border-slate-800/80 shadow-lg transition-all duration-300 hover:border-cyan-400/50 hover:shadow-[0_0_24px_0px_#00ffdc50] cursor-pointer">
+              <div 
+                key={index} 
+                className="group relative p-6 rounded-2xl bg-gradient-to-br from-slate-900/80 to-slate-950/70 border border-slate-800/80 shadow-lg transition-all duration-300 hover:border-cyan-400/50 hover:shadow-[0_0_24px_0px_#00ffdc50] cursor-pointer"
+              >
                 <div className="flex justify-between items-start">
                   <div className="flex flex-col">
                     <div className="p-3 mb-4 rounded-full bg-slate-800/80 border border-slate-700/60 w-max group-hover:bg-cyan-900/50 group-hover:border-cyan-600/70 transition-all duration-300">
-                      <div className="text-2xl text-slate-400 group-hover:text-cyan-300 transition-colors duration-300">{stat.icon}</div>
+                      <div className="text-2xl text-slate-400 group-hover:text-cyan-300 transition-colors duration-300">
+                        {stat.icon}
+                      </div>
                     </div>
-                    <h3 className="text-sm font-semibold uppercase tracking-wider text-slate-400 group-hover:text-slate-300 transition-colors duration-300">{stat.title}</h3>
-                    <p className="text-xs text-slate-500 mt-1">{stat.description}</p>
+                    <h3 className="text-sm font-semibold uppercase tracking-wider text-slate-400 group-hover:text-slate-300 transition-colors duration-300">
+                      {stat.title}
+                    </h3>
+                    <p className="text-xs text-slate-500 mt-1">
+                      {stat.description}
+                    </p>
                   </div>
                   <div className="flex flex-col items-end">
-                    <p className="text-5xl font-bold text-white transition-all duration-300 group-hover:text-cyan-300">{stat.value}</p>
+                    <p className="text-5xl font-bold text-white transition-all duration-300 group-hover:text-cyan-300">
+                      {stat.value}
+                    </p>
                     <FaArrowRight className="text-slate-600 mt-auto group-hover:text-cyan-400 transition-all duration-300 -rotate-45" />
                   </div>
                 </div>
               </div>
             ))}
           </motion.div>
+          {/* ======================================= */}
+          {/* DIV BARU YANG DITAMBAHKAN SELESAI DI SINI */}
+          {/* ======================================= */}
+
         </section>
 
-        {/* ======================================= */}
-        {/* BAGIAN PROJECT BARU MULAI DI SINI   */}
-        {/* ======================================= */}
-        <section id="project" className="py-20">
-          <motion.div
-            initial={{ opacity: 0, y: 50 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.2 }}
-            transition={{ duration: 0.8, ease: "easeOut", delay: 0.2 }}
-            className="max-w-5xl mx-auto px-8"
-          >
-            {/* Navigasi Tab */}
-            <div className="flex justify-center border-b border-slate-800">
-              <div className="relative flex space-x-8">
-                {tabs.map((tab) => (
-                  <button
-                    key={tab.id}
-                    onClick={() => setActiveTab(tab.id)}
-                    className={`${activeTab === tab.id ? 'text-cyan-300' : 'text-slate-400 hover:text-cyan-400'} relative rounded-full px-4 py-2 text-lg font-medium transition-colors duration-300 focus:outline-none`}
-                  >
-                    {activeTab === tab.id && (
-                      <motion.span
-                        layoutId="bubble"
-                        className="absolute inset-0 bg-slate-800/60 border border-cyan-400/20"
-                        style={{ borderRadius: 9999 }}
-                        transition={{ type: 'spring', bounce: 0.2, duration: 0.6 }}
-                      />
-                    )}
-                    <span className="relative z-10">{tab.label}</span>
-                  </button>
-                ))}
-              </div>
-            </div>
-
-            {/* Konten Tab */}
-            <div className="mt-8">
-              <AnimatePresence mode="wait">
-                <motion.div
-                  key={activeTab}
-                  initial={{ y: 10, opacity: 0 }}
-                  animate={{ y: 0, opacity: 1 }}
-                  exit={{ y: -10, opacity: 0 }}
-                  transition={{ duration: 0.2 }}
-                  className="bg-slate-900/50 border border-slate-800/80 rounded-2xl p-8 min-h-[200px] text-center flex items-center justify-center"
-                >
-                  {activeTab === 'Projects' && (
-                    <p className="text-slate-300 font-cascadia">Konten untuk Proyek akan ditampilkan di sini.</p>
-                  )}
-                  {activeTab === 'Certificate' && (
-                    <p className="text-slate-300 font-cascadia">Daftar Sertifikat akan ditampilkan di sini.</p>
-                  )}
-                  {activeTab === 'Tech Stack' && (
-                    <p className="text-slate-300 font-cascadia">Teknologi yang saya kuasai akan ditampilkan di sini.</p>
-                  )}
-                </motion.div>
-              </AnimatePresence>
-            </div>
-          </motion.div>
-        </section>
-        {/* ======================================= */}
-        {/* BAGIAN PROJECT BARU SELESAI DI SINI   */}
-        {/* ======================================= */}
+        {/* BAGIAN PROJECTS */}
+        <ProjectSection />
 
       </main>
     </div>
