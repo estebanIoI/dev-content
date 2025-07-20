@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion } from "framer-motion";
 import bangzenLogo from '../assets/images/BGZENBGIJObulat.png';
 
@@ -7,6 +7,15 @@ const CLIP_PATH =
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 0);
+    };
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   const NavLink = ({ href, children }) => (
     <li>
@@ -29,27 +38,43 @@ const Header = () => {
         className="fixed top-0 left-0 w-full z-50 pointer-events-none"
       >
         {/* Drop Shadow Gradient Animated */}
-        <div
-          className="pointer-events-none absolute left-0 right-0 z-10"
-          style={{
-            top: '0',
-            height: '90px',
-            WebkitClipPath: CLIP_PATH,
-            clipPath: CLIP_PATH,
-            background: 'linear-gradient(90deg, #00fff0, #00ffdc, #4079ff, #40ffaa, #00fff0)',
-            backgroundSize: '300% 100%',
-            animation: 'gradientShadowMove 6s linear infinite',
-            opacity: 1,
-            filter: 'drop-shadow(0 16px 24px rgba(64,255,170,0.35))',
-          }}
-        ></div>
+        {!isScrolled && (
+          <div
+            className="pointer-events-none absolute left-0 right-0 z-10"
+            style={{
+              top: '0',
+              height: '90px',
+              WebkitClipPath: CLIP_PATH,
+              clipPath: CLIP_PATH,
+              background: 'linear-gradient(90deg, #00fff0, #00ffdc, #4079ff, #40ffaa, #00fff0)',
+              backgroundSize: '300% 100%',
+              animation: 'gradientShadowMove 6s linear infinite',
+              opacity: 1,
+              filter: 'drop-shadow(0 16px 24px rgba(64,255,170,0.35))',
+            }}
+          ></div>
+        )}
 
         {/* Navbar */}
         <header
-          className="bg-[#11142F] pt-3 pb-3 relative z-20 pointer-events-auto"
+          className={`pt-3 pb-3 relative z-20 pointer-events-auto transition-all duration-300
+            ${isScrolled
+              ? "glassmorphism-header"
+              : "bg-[#11142F]"
+            }`}
           style={{
             WebkitClipPath: CLIP_PATH,
             clipPath: CLIP_PATH,
+            ...(isScrolled
+              ? {
+                  backgroundColor: "rgba(17, 20, 47, 0.71)",
+                  backdropFilter: "blur(7px) saturate(180%)",
+                  WebkitBackdropFilter: "blur(7px) saturate(180%)",
+                  border: "1px solid rgba(255,255,255,0.125)",
+                  borderRadius: "12px"
+                }
+              : {}
+            )
           }}
         >
           <nav className="container mx-auto flex items-center justify-around flex-wrap pb-4">

@@ -10,9 +10,11 @@ import Skills from './components/Skills';
 import { ButtonMovingBorder } from './components/MovingBorderButton';
 import { motion } from "framer-motion";
 import { FaGithub, FaInstagram, FaLinkedin, FaDownload, FaBriefcase } from 'react-icons/fa';
-
-// Ganti dengan path ke gambar profil Anda di folder 'public' atau 'src/assets'
-const profileImageUrl = '/path-to-your-image.jpg'; // <-- GANTI INI
+import ProfileCard from './components/ProfileCard/ProfileCard';
+import ZAINFIX from './assets/images/ZAINFIX.png';
+import { IconCloud } from './components/IconCloud';
+import Spline from '@splinetool/react-spline';
+import { VelocityScroll } from './components/VelocityScroll';
 
 function App() {
   return (
@@ -72,22 +74,95 @@ function App() {
         </section>
 
         {/* BAGIAN ABOUT ME BARU (SESUAI GAMBAR DAN STYLE WEB) */}
-        <section id="about" className="py-24 md:py-32">
+        <section
+  id="about"
+  className="py-12 md:py-18 gap-0 w-full mx-0 px-0"
+  style={{ width: "100vw", position: "relative", left: "50%", right: "50%", marginLeft: "-50vw", marginRight: "-50vw" }}
+>
           <motion.div
             initial={{ opacity: 0, y: 50 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.2 }}
             transition={{ duration: 0.8, ease: "easeOut" }}
-            className="text-center mb-16"
+            className="text-center"
           >
-            <h2 className="text-4xl md:text-5xl font-bold text-white">About <span className="text-[#00ffdc]">Me</span></h2>
-            <p className="text-lg text-cyan-200/70 mt-2">
-              ✧ Transforming ideas into digital experiences ✧
+            <div className="relative flex w-full flex-col items-center justify-center overflow-hidden mb-20">
+              {/* Atas: Bergerak ke kanan */}
+              <VelocityScroll
+                defaultVelocity={3}
+                numRows={1}
+                className="max-w-full"
+              >
+                <span
+                  className="font-moderniz font-bold"
+                  style={{
+                    fontSize: "2.5rem",
+                    lineHeight: "1.1",
+                    color: "#00ffdc",
+                    textShadow: "2px 2px 0 #000754, 4px 4px 0 #4079ff, 0 4px 12px #40ffaa, 0 1px 0 #00ffdc",
+                    background: "none",
+                    WebkitBackgroundClip: "unset",
+                    WebkitTextFillColor: "unset",
+                    animation: "none"
+                  }}
+                >
+                  ABOUT <span style={{ color: "#fff" }}>ME</span>
+                </span>
+              </VelocityScroll>
+              {/* Gradasi kiri-kanan */}
+              <div className="pointer-events-none absolute inset-y-0 left-0 w-1/4 bg-gradient-to-r from-[#060010]"></div>
+              <div className="pointer-events-none absolute inset-y-0 right-0 w-1/4 bg-gradient-to-l from-[#060010]"></div>
+              {/* Bawah: Bergerak ke kiri */}
+              <VelocityScroll
+                defaultVelocity={-3}
+                numRows={1}
+                className="max-w-full"
+              >
+                <span
+                  className="font-moderniz font-bold"
+                  style={{
+                    fontSize: "2.5rem",
+                    lineHeight: "1.1",
+                    color: "#00ffdc",
+                    textShadow: "2px 2px 0 #000754, 4px 4px 0 #4079ff, 0 4px 12px #40ffaa, 0 1px 0 #00ffdc",
+                    background: "none",
+                    WebkitBackgroundClip: "unset",
+                    WebkitTextFillColor: "unset",
+                    animation: "none"
+                  }}
+                >
+                  ABOUT <span style={{ color: "#fff" }}>ME</span>
+                </span>
+              </VelocityScroll>
+            </div>
+            <p className="text-lg text-cyan-200/70 mt-2 font-cascadia">
+              ✧ Passionate about coding and creative technology ✧
             </p>
           </motion.div>
+          <style>
+              {`
+              @keyframes gradientMove {
+                0% { background-position: 0% 50%; }
+                100% { background-position: 200% 50%; }
+              }
+              `}
+          </style>
 
-          <div className="flex flex-col md:flex-row items-center justify-center gap-10 md:gap-16">
-            {/* KIRI: Teks & Tombol */}
+          <div className="flex flex-col md:flex-row items-center justify-center">
+            {/* KIRI: Spline 3D */}
+            <motion.div
+              initial={{ opacity: 0, scale: 0.8 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              viewport={{ once: true, amount: 0.3 }}
+              transition={{ duration: 0.9, ease: "easeOut", delay: 0.2 }}
+              className="md:w-1/3 flex justify-center"
+            >
+              <div className="w-full h-[530px] flex items-center justify-center">
+                <Spline scene="https://prod.spline.design/FcZ66SFMX1YbF-0I/scene.splinecode" />
+              </div>
+            </motion.div>
+
+            {/* KANAN: Teks & Tombol */}
             <motion.div
               initial={{ opacity: 0, x: -50 }}
               whileInView={{ opacity: 1, x: 0 }}
@@ -95,13 +170,17 @@ function App() {
               transition={{ duration: 0.9, ease: "easeOut" }}
               className="md:w-1/2 text-white text-center md:text-left"
             >
-              <p className="text-2xl text-gray-300">Hello, I'm</p>
-              <h3 className="text-5xl md:text-6xl font-bold text-white my-2">Eki Zulfar Rachman</h3>
-              <p className="text-white/80 leading-relaxed mt-4">
-                Seorang Lulusan Teknik Jaringan Komputer dan Telekomunikasi yang memiliki ketertarikan besar dalam pengembangan Front-End. Saya berfokus pada menciptakan pengalaman digital yang menarik dan selalu berusaha memberikan solusi terbaik dalam setiap proyek yang saya kerjakan.
+              <p className="text-2xl text-gray-300 font-moderniz my" style={{
+    textShadow: "2px 2px 0 #000754, 4px 4px 0 #4079ff, 0 4px 12px #40ffaa, 0 1px 0 #00ffdc"
+  }}>Hello, I'm</p>
+  <h3 className="text-5xl md:text-6xl font-bold text-white my-2 font-moderniz" style={{
+    textShadow: "2px 2px 0 #000754, 4px 4px 0 #4079ff, 0 4px 12px #40ffaa, 0 1px 0 #00ffdc"
+  }}>Zain Ahmad Fahrezi</h3>
+              <p className="text-white/80 leading-relaxed mt-4 font-cascadia">
+                Saya adalah mahasiswa Teknik Informatika di Universitas Indo Global Mandiri Palembang yang memiliki minat besar dalam pengembangan Front-End dan teknologi web modern. Saya selalu bersemangat untuk belajar hal baru dan menciptakan solusi digital yang inovatif.
               </p>
-              <div className="my-6 bg-slate-900/50 border-l-4 border-[#00ffdc] p-4 rounded-r-lg italic text-white/70">
-                "Leveraging AI as a professional tool, not a replacement."
+              <div className="my-6 bg-slate-900/50 border-l-4 border-[#00ffdc] p-4 rounded-r-lg italic text-white/70 font-cascadia">
+                "Whoever strives shall succeed."
               </div>
               <div className="flex flex-col sm:flex-row gap-4 mt-8 justify-center md:justify-start">
                 <ButtonMovingBorder
@@ -128,24 +207,6 @@ function App() {
               </div>
             </motion.div>
 
-            {/* KANAN: Gambar Profil */}
-            <motion.div
-              initial={{ opacity: 0, scale: 0.8 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              viewport={{ once: true, amount: 0.3 }}
-              transition={{ duration: 0.9, ease: "easeOut", delay: 0.2 }}
-              className="md:w-1/3 flex justify-center"
-            >
-              <div className="relative w-64 h-64 md:w-80 md:h-80">
-                <img
-                  src={profileImageUrl}
-                  alt="Foto profil Eki Zulfar Rachman"
-                  className="rounded-full w-full h-full object-cover border-4 border-cyan-500/50"
-                  onError={(e) => { e.target.onerror = null; e.target.src='https://placehold.co/400x400/060010/FFFFFF?text=Eki'; }}
-                />
-                <div className="absolute inset-0 rounded-full ring-4 ring-cyan-400/70 ring-offset-4 ring-offset-[#060010] animate-pulse"></div>
-              </div>
-            </motion.div>
           </div>
         </section>
 
