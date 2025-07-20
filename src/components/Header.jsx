@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { motion } from "framer-motion";
 import bangzenLogo from '../assets/images/BGZENBGIJObulat.png';
 
 const CLIP_PATH =
@@ -21,7 +22,12 @@ const Header = () => {
 
   return (
     <>
-      <div className="fixed top-0 left-0 w-full z-50 pointer-events-none">
+      <motion.div
+        initial={{ opacity: 0, y: -60 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.8, ease: "easeOut" }}
+        className="fixed top-0 left-0 w-full z-50 pointer-events-none"
+      >
         {/* Drop Shadow Gradient Animated */}
         <div
           className="pointer-events-none absolute left-0 right-0 z-10"
@@ -95,7 +101,7 @@ const Header = () => {
             )}
           </nav>
         </header>
-      </div>
+      </motion.div>
 
       {/* Animasi gradient keyframes */}
       <style>
