@@ -1,9 +1,9 @@
 // src/components/ProjectSection.jsx
-import React, { useState, useRef } from 'react';
+import React, { useState } from 'react';
 import { motion, AnimatePresence } from "framer-motion";
 import { 
   FaExternalLinkAlt, FaReact, FaNodeJs, FaHtml5, FaCss3Alt, 
-  FaJsSquare, FaTools, FaFigma, FaGithub, FaCertificate, FaLayerGroup
+  FaJsSquare, FaTools, FaFigma, FaGithub
 } from 'react-icons/fa';
 import { 
   SiTailwindcss, SiNextdotjs, SiVercel, SiMongodb, 
@@ -14,15 +14,16 @@ import { LuBadge } from "react-icons/lu";
 import { LiaLayerGroupSolid } from "react-icons/lia";
 
 // ===================================
-// DUMMY DATA (disimpan di dalam komponen)
+// DUMMY DATA
 // ===================================
 const dummyProjects = [
-  {
+    {
     title: "Portfolio v2",
     description: "Website portofolio pribadi yang dibangun dengan React, Next.js, dan Tailwind CSS, di-deploy di Vercel.",
     tech: ["Next.js", "React", "TailwindCSS", "Framer Motion"],
     link: "https://github.com/username/portfolio",
-    image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=2070&auto=format&fit=crop", 
+    image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=2070&auto=format&fit=crop",
+    category: "Web/Apps",
   },
   {
     title: "E-Commerce API",
@@ -30,6 +31,7 @@ const dummyProjects = [
     tech: ["Node.js", "Express", "MongoDB", "JWT"],
     link: "https://github.com/username/ecommerce-api",
     image: "https://images.unsplash.com/photo-1522199755839-a2bacb67c546?q=80&w=2072&auto=format&fit=crop",
+    category: "Web/Apps",
   },
   {
     title: "UI Design System",
@@ -37,35 +39,50 @@ const dummyProjects = [
     tech: ["Figma", "Storybook"],
     link: "#",
     image: "https://images.unsplash.com/photo-1600132806378-62402124d9e0?q=80&w=2070&auto=format&fit=crop",
+    category: "Web/Apps",
+  },
+  {
+    title: "3D Product Visualization",
+    description: "Desain 3D interaktif untuk showcase produk menggunakan Spline dan Blender.",
+    tech: ["Spline", "Blender"],
+    link: "#",
+    image: "https://images.unsplash.com/photo-1506744038136-46273834b3fb?q=80&w=2070&auto=format&fit=crop",
+    category: "3D Design",
+  },
+  {
+    title: "Animated 3D Landing",
+    description: "Landing page dengan elemen 3D animasi untuk branding modern.",
+    tech: ["Spline", "Three.js"],
+    link: "#",
+    image: "https://images.unsplash.com/photo-1465101046530-73398c7f28ca?q=80&w=2070&auto=format&fit=crop",
+    category: "3D Design",
   },
 ];
-
 const dummyCertificates = [
-  {
+    {
     title: "React - The Complete Guide",
     issuer: "Udemy",
     date: "Juni 2024",
     link: "#",
     image: "https://images.unsplash.com/photo-1633356122544-f134324a6cee?q=80&w=2070&auto=format&fit=crop",
-  },
-  {
+    },
+    {
     title: "Node.js, Express, MongoDB & More",
     issuer: "Udemy",
     date: "Januari 2024",
     link: "#",
     image: "https://images.unsplash.com/photo-1629654857513-3c52c2d35532?q=80&w=1887&auto=format&fit=crop",
-  },
-  {
+    },
+    {
     title: "Belajar Dasar Pemrograman Web",
     issuer: "Dicoding",
     date: "Oktober 2023",
     link: "#",
     image: "https://images.unsplash.com/photo-1542831371-29b0f74f9713?q=80&w=2070&auto=format&fit=crop",
-  },
+    },
 ];
-
 const techStack = {
-  frontend: [
+    frontend: [
     { name: "React", icon: <FaReact className="text-[#61DAFB]" /> },
     { name: "Next.js", icon: <SiNextdotjs className="text-white" /> },
     { name: "JavaScript", icon: <FaJsSquare className="text-[#F7DF1E]" /> },
@@ -89,44 +106,84 @@ const techStack = {
   ],
 };
 
+
+// ===================================
+// HELPER & ANIMATION COMPONENTS
+// ===================================
+
+/**
+ * A simple utility for conditionally joining class names.
+ * @param {...(string|boolean|null|undefined)} classes - The classes to join.
+ * @returns {string} The combined class names.
+ */
+const cn = (...classes) => classes.filter(Boolean).join(' ');
+
+/**
+ * Renders text with an animated diagonal line shadow effect.
+ * This component uses a CSS ::after pseudo-element and custom properties
+ * to create the effect.
+ */
+const LineShadowText = ({ children, className, shadowColor = "#4079ff", ...props }) => {
+    // This component is designed to work with string children for the data-text attribute.
+    if (typeof children !== 'string') {
+        console.error("LineShadowText only accepts string content.");
+        return <span {...props}>{children}</span>;
+    }
+
+    return (
+        <motion.span
+            // Pass the shadow color as a CSS custom property.
+            style={{ "--shadow-color": shadowColor }}
+            // Apply the custom class for the effect and any other classes.
+            className={cn("relative z-0 line-shadow-effect", className)}
+            // The data-text attribute is used by the CSS pseudo-element.
+            data-text={children}
+            {...props}
+        >
+            {children}
+        </motion.span>
+    );
+};
+
+
 // ===================================
 // KOMPONEN KARTU PROYEK
 // ===================================
 const ProjectCard = ({ project }) => {
-  const techIcons = {
+    const techIcons = {
     "Next.js": <SiNextdotjs />, "React": <FaReact />, "TailwindCSS": <SiTailwindcss />,
     "Framer Motion": "🎨", "Node.js": <FaNodeJs />, "Express": <SiExpress />, 
     "MongoDB": <SiMongodb />, "JWT": "🔑", "Figma": <FaFigma />, "Storybook": "📚"
-  };
+    };
 
-  return (
+    return (
     <a href={project.link} target="_blank" rel="noopener noreferrer"
-      className="group relative h-64 sm:h-72 rounded-2xl overflow-hidden transition-shadow duration-300 hover:shadow-lg hover:shadow-cyan-500/30"
-      style={{
+        className="group relative h-64 sm:h-72 rounded-2xl overflow-hidden transition-shadow duration-300 hover:shadow-lg hover:shadow-cyan-500/30"
+        style={{
         background: `url('${project.image}') center/cover no-repeat`,
         cursor: 'pointer',
-      }}
+        }}
     >
-      <div className="absolute inset-0 bg-black/50 group-hover:bg-black/60 transition-colors duration-300 flex flex-col justify-between p-4 sm:p-6 text-white">
+        <div className="absolute inset-0 bg-black/50 group-hover:bg-black/60 transition-colors duration-300 flex flex-col justify-between p-4 sm:p-6 text-white">
         <div>
-          <h3 className="text-lg sm:text-xl font-bold text-cyan-300">{project.title}</h3>
-          <p className="text-slate-300 mt-2 text-xs sm:text-sm leading-relaxed">{project.description}</p>
+            <h3 className="text-lg sm:text-xl font-bold text-cyan-300">{project.title}</h3>
+            <p className="text-slate-300 mt-2 text-xs sm:text-sm leading-relaxed">{project.description}</p>
         </div>
         <div className="flex items-end justify-between">
-          <div className="flex flex-wrap gap-2 mt-4">
+            <div className="flex flex-wrap gap-2 mt-4">
             {project.tech.map((t, i) => (
-              <span key={i} className="flex items-center gap-1 text-xs font-mono px-2 py-1 rounded-full bg-cyan-900/70 text-cyan-200 border border-cyan-800/30 backdrop-blur-sm">
+                <span key={i} className="flex items-center gap-1 text-xs font-mono px-2 py-1 rounded-full bg-cyan-900/70 text-cyan-200 border border-cyan-800/30 backdrop-blur-sm">
                 {techIcons?.[t] || t}
-              </span>
+                </span>
             ))}
-          </div>
-          <FaExternalLinkAlt className="text-slate-300 group-hover:text-cyan-200 transition-colors duration-300" />
+            </div>
+            <FaExternalLinkAlt className="text-slate-300 group-hover:text-cyan-200 transition-colors duration-300" />
         </div>
-      </div>
-      <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-cyan-500/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-      <div className="absolute inset-0 rounded-2xl border border-cyan-300/10 pointer-events-none"></div>
+        </div>
+        <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-cyan-500/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+        <div className="absolute inset-0 rounded-2xl border border-cyan-300/10 pointer-events-none"></div>
     </a>
-  );
+    );
 };
 
 // ===================================
@@ -134,11 +191,12 @@ const ProjectCard = ({ project }) => {
 // ===================================
 function ProjectSection() {
   const [activeTab, setActiveTab] = useState('Projects');
+  const [projectCategory, setProjectCategory] = useState('Web/Apps');
   const tabs = [
     {
       id: 'Projects',
       label: 'Projects',
-      icon: <PiCodeBold className="text-[1.7em] mb-1" />, // icon seperti gambar
+      icon: <PiCodeBold className="text-[1.7em] mb-1" />,
     },
     {
       id: 'Certificate',
@@ -152,18 +210,58 @@ function ProjectSection() {
     },
   ];
 
+  const filteredProjects = dummyProjects.filter(
+    (p) => p.category === projectCategory
+  );
+
   return (
     <section id="project" className="py-20">
-      <div
-        className="w-full rounded-3xl p-6 md:p-10 shadow-xl border border-slate-800/60 mx-auto max-w-7xl bg-clip-padding"
-        style={{
-          background: "rgba(17, 24, 39, 0.35)",
-          boxShadow: "0 8px 32px 0 rgba(31, 38, 135, 0.18)",
-          border: "1px solid rgba(255,255,255,0.08)",
-          backdropFilter: "blur(18px)",
-          WebkitBackdropFilter: "blur(18px)",
-        }}
+      
+      {/* CSS for the Line Shadow Animation */}
+      <style>{`
+        @keyframes line-shadow-anim {
+            0% { background-position: 0 0; }
+            100% { background-position: 100% 100%; }
+        }
+        .line-shadow-effect::after {
+            content: attr(data-text);
+            position: absolute;
+            z-index: -1;
+            left: 0.04em;
+            top: 0.04em;
+            background-image: linear-gradient(45deg, transparent 45%, var(--shadow-color) 45%, var(--shadow-color) 55%, transparent 0);
+            background-size: 0.06em 0.06em;
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            animation: line-shadow-anim 30s linear infinite;
+        }
+      `}</style>
+      
+      {/* Title with the new line-shadow animation */}
+      <motion.div
+        initial={{ opacity: 0, y: 50 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, amount: 0.2 }}
+        transition={{ duration: 0.8, ease: "easeOut" }}
+        className="text-center mb-20"
       >
+        <h2 className="text-5xl md:text-6xl font-bold font-moderniz">
+            <span style={{color: "#00ffdc"}}>
+                <LineShadowText shadowColor="#00b3a4">PORTFOLIO</LineShadowText>
+            </span>
+            {' '}
+            <span style={{ color: "#fff" }}>
+                <LineShadowText shadowColor="#bbbbbb">SHOWCASE</LineShadowText>
+            </span>
+        </h2>
+      </motion.div>
+
+      {/* Main content container */}
+      <div
+        className="w-full"
+      >
+        {/* Tab Navigation */}
         <div className="flex justify-center mb-12">
           <motion.div
             layout
@@ -210,6 +308,7 @@ function ProjectSection() {
           </motion.div>
         </div>
 
+        {/* Tab Content */}
         <div
           className="rounded-3xl p-0 md:p-6 shadow-xl border border-slate-800/60 mx-auto max-w-7xl bg-clip-padding"
           style={{
@@ -230,9 +329,39 @@ function ProjectSection() {
               className="p-6 md:p-10"
             >
               {activeTab === 'Projects' && (
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                  {dummyProjects.map((p, i) => <ProjectCard key={i} project={p} />)}
-                </div>
+                <>
+                  <div className="flex justify-center gap-4 mb-8">
+                    <button
+                      className={`px-5 py-2 rounded-full font-semibold transition-all duration-200 border
+                        ${projectCategory === 'Web/Apps'
+                          ? 'bg-cyan-700/80 text-white border-cyan-400 shadow-cyan-500/10 shadow-lg'
+                          : 'bg-slate-900/60 text-cyan-200 border-slate-700 hover:bg-cyan-800/40 hover:text-white'}
+                      `}
+                      onClick={() => setProjectCategory('Web/Apps')}
+                    >
+                      Web/Apps
+                    </button>
+                    <button
+                      className={`px-5 py-2 rounded-full font-semibold transition-all duration-200 border
+                        ${projectCategory === '3D Design'
+                          ? 'bg-cyan-700/80 text-white border-cyan-400 shadow-cyan-500/10 shadow-lg'
+                          : 'bg-slate-900/60 text-cyan-200 border-slate-700 hover:bg-cyan-800/40 hover:text-white'}
+                      `}
+                      onClick={() => setProjectCategory('3D Design')}
+                    >
+                      3D Design
+                    </button>
+                  </div>
+                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    {filteredProjects.length > 0 ? (
+                      filteredProjects.map((p, i) => <ProjectCard key={i} project={p} />)
+                    ) : (
+                      <div className="col-span-full text-center text-slate-400 py-12">
+                        No projects in this category yet.
+                      </div>
+                    )}
+                  </div>
+                </>
               )}
               {activeTab === 'Certificate' && (
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-5xl mx-auto">

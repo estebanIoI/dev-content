@@ -3,6 +3,7 @@ import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Github, Linkedin, Instagram } from 'lucide-react';
 import DotGrid from './DotGrid'; // Impor komponen DotGrid
+import Spline from '@splinetool/react-spline';
 
 /**
  * Komponen Preloader dengan animasi ketik dan latar belakang DotGrid interaktif.
@@ -66,6 +67,12 @@ const Preloader = ({ onFinished }) => {
               animate={{ opacity: 1, y: 0, transition: { duration: 0.8, ease: "easeInOut" } }}
               className="text-center relative z-10 p-4"
             >
+              {/* Spline 3D di atas nama */}
+              <div className="flex justify-center mb-2 mt-[-24px] md:mt-[-32px]">
+                <div className="w-[320px] h-[180px] md:w-[480px] md:h-[260px]">
+                  <Spline scene="https://prod.spline.design/FcZ66SFMX1YbF-0I/scene.splinecode" />
+                </div>
+              </div>
               <motion.h1
                 initial={{ opacity: 0, scale: 0.8 }}
                 animate={{ opacity: 1, scale: 1, transition: { duration: 0.8, delay: 0.2, ease: "easeOut" } }}
@@ -98,6 +105,12 @@ const Preloader = ({ onFinished }) => {
               </motion.div>
             </motion.div>
           )}
+          {/* Spline 3D di bawah layar, tengah */}
+          {/* <div className="fixed inset-x-0 bottom-0 flex justify-center items-end z-0 pointer-events-none">
+            <div className="w-[480px] h-[320px] md:w-[700px] md:h-[340px]">
+              <Spline scene="https://prod.spline.design/FcZ66SFMX1YbF-0I/scene.splinecode" />
+            </div>
+          </div> */}
         </motion.div>
       )}
     </AnimatePresence>
