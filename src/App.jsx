@@ -17,6 +17,9 @@ import { IconCloud } from './components/IconCloud';
 import Spline from '@splinetool/react-spline';
 import { VelocityScroll } from './components/VelocityScroll';
 import ProjectSection from './components/ProjectSection';
+import Contact from './components/Contact';
+import { NavbarProvider } from './contexts/NavbarContext';
+import { AdminProvider } from './contexts/AdminContext';
 
 function App() {
   // Data untuk card statistik
@@ -29,7 +32,7 @@ function App() {
     },
     {
       icon: <FaCertificate />,
-      value: "7",
+      value: "13",
       title: "CERTIFICATES",
       description: "Professional skills validated",
     },
@@ -42,7 +45,9 @@ function App() {
   ];
 
   return (
-    <div className="relative min-h-screen bg-[#060010] overflow-hidden">
+    <AdminProvider>
+      <NavbarProvider>
+        <div className="relative min-h-screen bg-[#060010] overflow-hidden">
       {/* LAPISAN 1: BACKGROUND ANIMASI */}
       <div className="absolute inset-0 z-0">
         <Squares
@@ -80,13 +85,13 @@ function App() {
               <Skills />
             </motion.div>
             <motion.div initial={{ opacity: 0, y: 40 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7, delay: 1.0, ease: "easeOut" }} className="flex flex-row gap-4 mt-8">
-              <a href="https://github.com/username" target="_blank" rel="noopener noreferrer" aria-label="GitHub Profile" className="group relative flex h-12 w-12 items-center justify-center rounded-full border border-slate-700 bg-slate-900/[0.8] text-white transition-all duration-300 hover:border-cyan-400 hover:bg-slate-800 hover:shadow-[0_0_24px_2px_#00ffdc]">
+              <a href="https://github.com/ZainAhmadF28" target="_blank" rel="noopener noreferrer" aria-label="GitHub Profile" className="group relative flex h-12 w-12 items-center justify-center rounded-full border border-slate-700 bg-slate-900/[0.8] text-white transition-all duration-300 hover:border-cyan-400 hover:bg-slate-800 hover:shadow-[0_0_24px_2px_#00ffdc]">
                 <FaGithub className="h-6 w-6 text-slate-400 transition-all duration-300 group-hover:text-cyan-300" />
               </a>
-              <a href="https://instagram.com/username" target="_blank" rel="noopener noreferrer" aria-label="Instagram Profile" className="group relative flex h-12 w-12 items-center justify-center rounded-full border border-slate-700 bg-slate-900/[0.8] text-white transition-all duration-300 hover:border-cyan-400 hover:bg-slate-800 hover:shadow-[0_0_24px_2px_#00ffdc]">
+              <a href="https://instagram.com/zain.ahmadf" target="_blank" rel="noopener noreferrer" aria-label="Instagram Profile" className="group relative flex h-12 w-12 items-center justify-center rounded-full border border-slate-700 bg-slate-900/[0.8] text-white transition-all duration-300 hover:border-cyan-400 hover:bg-slate-800 hover:shadow-[0_0_24px_2px_#00ffdc]">
                 <FaInstagram className="h-6 w-6 text-slate-400 transition-all duration-300 group-hover:text-cyan-300" />
               </a>
-              <a href="https://linkedin.com/in/username" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn Profile" className="group relative flex h-12 w-12 items-center justify-center rounded-full border border-slate-700 bg-slate-900/[0.8] text-white transition-all duration-300 hover:border-cyan-400 hover:bg-slate-800 hover:shadow-[0_0_24px_2px_#00ffdc]">
+              <a href="https://linkedin.com/in/zainahmadfahrezi" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn Profile" className="group relative flex h-12 w-12 items-center justify-center rounded-full border border-slate-700 bg-slate-900/[0.8] text-white transition-all duration-300 hover:border-cyan-400 hover:bg-slate-800 hover:shadow-[0_0_24px_2px_#00ffdc]">
                 <FaLinkedin className="h-6 w-6 text-slate-400 transition-all duration-300 group-hover:text-cyan-300" />
               </a>
             </motion.div>
@@ -278,10 +283,16 @@ function App() {
         </section>
 
         {/* BAGIAN PROJECTS */}
+        <section id="projects" className="py-12 md:py-18">
         <ProjectSection />
+        </section>
 
+        {/* BAGIAN CONTACT */}
+        <Contact />
       </main>
-    </div>
+      </div>
+      </NavbarProvider>
+    </AdminProvider>
   );
 }
 

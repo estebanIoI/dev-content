@@ -1,9 +1,9 @@
 // src/components/ProjectSection.jsx
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from "framer-motion";
 import { 
   FaExternalLinkAlt, FaReact, FaNodeJs, FaHtml5, FaCss3Alt, 
-  FaJsSquare, FaTools, FaFigma, FaGithub
+  FaJsSquare, FaTools, FaFigma, FaGithub, FaTimes, FaDownload
 } from 'react-icons/fa';
 import { 
   SiTailwindcss, SiNextdotjs, SiVercel, SiMongodb, 
@@ -12,9 +12,10 @@ import {
 import { PiCodeBold } from "react-icons/pi";
 import { LuBadge } from "react-icons/lu";
 import { LiaLayerGroupSolid } from "react-icons/lia";
+import { useNavbar } from '../contexts/NavbarContext';
 
 // ===================================
-// DUMMY DATA
+// DATA PROYEK (CONTOH)
 // ===================================
 const dummyProjects = [
     {
@@ -58,29 +59,105 @@ const dummyProjects = [
     category: "3D Design",
   },
 ];
-const dummyCertificates = [
+
+// ===================================
+// DATA SERTIFIKAT ZAIN AHMAD FAHREZI
+// PENTING: Pastikan file PDF ada di folder /public/certificates/ dengan nama yang sesuai.
+// ===================================
+const userCertificates = [
     {
-    title: "React - The Complete Guide",
-    issuer: "Udemy",
-    date: "Juni 2024",
-    link: "#",
-    image: "https://images.unsplash.com/photo-1633356122544-f134324a6cee?q=80&w=2070&auto=format&fit=crop",
+        title: "Belajar Membuat Aplikasi Web dengan React",
+        issuer: "Dicoding Indonesia",
+        date: "Des 2024",
+        link: "/certificates/Belajar Membuat Aplikasi Web dengan React.pdf",
+        image: "/certificate-images/Belajar Membuat Aplikasi Web dengan React.jpg",
     },
     {
-    title: "Node.js, Express, MongoDB & More",
-    issuer: "Udemy",
-    date: "Januari 2024",
-    link: "#",
-    image: "https://images.unsplash.com/photo-1629654857513-3c52c2d35532?q=80&w=1887&auto=format&fit=crop",
+        title: "Belajar Dasar Pemrograman JavaScript",
+        issuer: "Dicoding Indonesia",
+        date: "Des 2024",
+        link: "/certificates/Belajar Dasar Pemrograman JavaScript.pdf",
+        image: "/certificate-images/Belajar Dasar Pemrograman JavaScript.jpg",
     },
     {
-    title: "Belajar Dasar Pemrograman Web",
-    issuer: "Dicoding",
-    date: "Oktober 2023",
-    link: "#",
-    image: "https://images.unsplash.com/photo-1542831371-29b0f74f9713?q=80&w=2070&auto=format&fit=crop",
+        title: "Junior Web Developer (BNSP)",
+        issuer: "Badan Nasional Sertifikasi Profesi (BNSP)",
+        date: "Sep 2024",
+        link: "/certificates/SERTIFIKAT BNSP JUNIOR WEB DEVELOPER ZAIN AHMAD FAHREZI.jpeg",
+        image: "/certificate-images/SERTIFIKAT BNSP JUNIOR WEB DEVELOPER ZAIN AHMAD FAHREZI.jpg",
+    },
+    {
+        title: "Belajar Membuat Front-End Web untuk Pemula",
+        issuer: "Dicoding Indonesia",
+        date: "Des 2024",
+        link: "/certificates/Belajar Membuat Front-End Web untuk Pemula.pdf",
+        image: "/certificate-images/Belajar Membuat Front-End Web untuk Pemula.jpg",
+    },
+    {
+        title: "Operator Komputer Madya (BNSP)",
+        issuer: "Badan Nasional Sertifikasi Profesi (BNSP)",
+        date: "Des 2024",
+        link: "/certificates/Operator Komputer Madya BNSP.jpeg",
+        image: "/certificate-images/Operator Komputer Madya BNSP.jpg",
+    },
+    {
+        title: "Belajar Dasar Data Science",
+        issuer: "Dicoding Indonesia",
+        date: "Okt 2024",
+        link: "/certificates/Belajar Dasar Data Science.pdf",
+        image: "/certificate-images/Belajar Dasar Data Science.jpg",
+    },
+    {
+        title: "Belajar Dasar Structured Query Language (SQL)",
+        issuer: "Dicoding Indonesia",
+        date: "Okt 2024",
+        link: "/certificates/Belajar Dasar Structured Query Language (SQL).pdf",
+        image: "/certificate-images/Belajar Dasar Structured Query Language (SQL).jpg",
+    },
+    {
+        title: "Belajar Dasar AI",
+        issuer: "Dicoding Indonesia",
+        date: "Sep 2024",
+        link: "/certificates/Belajar Dasar AI.pdf",
+        image: "/certificate-images/Belajar Dasar AI.jpg",
+    },
+    {
+        title: "Belajar Dasar Manajemen Proyek",
+        issuer: "Dicoding Indonesia",
+        date: "Sep 2024",
+        link: "/certificates/Belajar Dasar Manajemen Proyek.pdf",
+        image: "/certificate-images/Belajar Dasar Manajemen Proyek.jpg",
+    },
+    {
+        title: "Operator Komputer Madya (VSGA)",
+        issuer: "Digital Talent Scholarship",
+        date: "Agu 2024",
+        link: "/certificates/Operator Komputer Madya VSGA.pdf",
+        image: "/certificate-images/Operator Komputer Madya VSGA.jpg",
+    },
+    {
+        title: "Junior Web Developer (VSGA)",
+        issuer: "Kominfo",
+        date: "Jul 2024",
+        link: "/certificates/Junior Web Developer VSGA.pdf",
+        image: "/certificate-images/Junior Web Developer VSGA.jpg",
+    },
+    {
+        title: "Java Fundamentals",
+        issuer: "Oracle",
+        date: "Jun 2024",
+        link: "/certificates/JAVA FUNDAMENTALS.pdf",
+        image: "/certificate-images/JAVA FUNDAMENTALS.jpg",
+    },
+    {
+        title: "Belajar Dasar Pemrograman Web",
+        issuer: "Dicoding Indonesia",
+        date: "Nov 2023",
+        link: "/certificates/Belajar Dasar Pemrograman Web.pdf",
+        image: "/certificate-images/Belajar Dasar Pemrograman Web.jpg",
     },
 ];
+
 const techStack = {
     frontend: [
     { name: "React", icon: <FaReact className="text-[#61DAFB]" /> },
@@ -111,20 +188,9 @@ const techStack = {
 // HELPER & ANIMATION COMPONENTS
 // ===================================
 
-/**
- * A simple utility for conditionally joining class names.
- * @param {...(string|boolean|null|undefined)} classes - The classes to join.
- * @returns {string} The combined class names.
- */
 const cn = (...classes) => classes.filter(Boolean).join(' ');
 
-/**
- * Renders text with an animated diagonal line shadow effect.
- * This component uses a CSS ::after pseudo-element and custom properties
- * to create the effect.
- */
 const LineShadowText = ({ children, className, shadowColor = "#4079ff", ...props }) => {
-    // This component is designed to work with string children for the data-text attribute.
     if (typeof children !== 'string') {
         console.error("LineShadowText only accepts string content.");
         return <span {...props}>{children}</span>;
@@ -132,11 +198,8 @@ const LineShadowText = ({ children, className, shadowColor = "#4079ff", ...props
 
     return (
         <motion.span
-            // Pass the shadow color as a CSS custom property.
             style={{ "--shadow-color": shadowColor }}
-            // Apply the custom class for the effect and any other classes.
             className={cn("relative z-0 line-shadow-effect", className)}
-            // The data-text attribute is used by the CSS pseudo-element.
             data-text={children}
             {...props}
         >
@@ -147,12 +210,143 @@ const LineShadowText = ({ children, className, shadowColor = "#4079ff", ...props
 
 
 // ===================================
+// KOMPONEN KARTU SERTIFIKAT
+// ===================================
+const CertificateCard = ({ cert, onClick }) => {
+    return (
+        <motion.div
+            className="group relative cursor-pointer"
+            whileHover={{ y: -8 }}
+            transition={{ duration: 0.3, ease: "easeOut" }}
+            onClick={() => onClick(cert)}
+        >
+            <div className="relative h-64 sm:h-72 rounded-2xl overflow-hidden shadow-lg bg-white/5 backdrop-blur-sm border border-white/10 hover:border-cyan-400/30 transition-all duration-500">
+                <div className="absolute inset-0">
+                    <img 
+                        src={cert.image} 
+                        alt={cert.title}
+                        className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-slate-900/90 via-slate-900/60 to-slate-900/30 group-hover:from-slate-900/95 transition-all duration-500"></div>
+                </div>
+                
+                <div className="absolute inset-0 p-5 flex flex-col justify-between">
+                    <div className="flex-1 flex items-start justify-between">
+                        <div className="bg-white/10 backdrop-blur-md px-3 py-1.5 rounded-full border border-white/20">
+                            <span className="text-xs font-semibold text-cyan-300 uppercase tracking-wider">{cert.issuer}</span>
+                        </div>
+                        <div className="bg-emerald-500/20 backdrop-blur-md px-3 py-1.5 rounded-full border border-emerald-400/30">
+                            <span className="text-xs font-bold text-emerald-300">{cert.date}</span>
+                        </div>
+                    </div>
+                    
+                    <div className="space-y-3">
+                        <div>
+                            <h3 className="text-lg sm:text-xl font-bold text-white line-clamp-2 leading-tight">
+                                {cert.title}
+                            </h3>
+                        </div>
+                        
+                        <div className="flex items-center justify-between">
+                            <div className="flex items-center space-x-2 text-slate-300">
+                                <FaDownload className="text-sm" />
+                                <span className="text-sm font-medium">View Certificate</span>
+                            </div>
+                            <div className="opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                                <div className="bg-cyan-500/20 backdrop-blur-md p-2 rounded-full border border-cyan-400/30">
+                                    <FaExternalLinkAlt className="text-cyan-300 text-sm" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-cyan-500/0 via-transparent to-emerald-500/0 group-hover:from-cyan-500/10 group-hover:to-emerald-500/10 transition-all duration-500"></div>
+            </div>
+        </motion.div>
+    );
+};
+
+// ===================================
+// KOMPONEN PREVIEW MODAL SERTIFIKAT
+// ===================================
+const CertificatePreviewModal = ({ certificate, onClose }) => {
+    if (!certificate) return null;
+    
+    return (
+        <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 bg-black/80 backdrop-blur-md flex items-center justify-center z-50 p-4"
+            onClick={onClose}
+        >
+            <motion.div
+                initial={{ scale: 0.8, opacity: 0 }}
+                animate={{ scale: 1, opacity: 1 }}
+                exit={{ scale: 0.8, opacity: 0 }}
+                transition={{ type: "spring", stiffness: 300, damping: 30 }}
+                className="relative max-w-4xl w-full bg-slate-900/90 backdrop-blur-xl rounded-3xl border border-white/10 shadow-2xl overflow-hidden"
+                onClick={(e) => e.stopPropagation()}
+            >
+                <div className="absolute top-4 right-4 z-10">
+                    <button 
+                        onClick={onClose}
+                        className="bg-red-500/20 hover:bg-red-500/30 backdrop-blur-md p-3 rounded-full border border-red-400/30 transition-all duration-300 group"
+                    >
+                        <FaTimes className="text-red-300 group-hover:text-red-200" />
+                    </button>
+                </div>
+                
+                <div className="p-6 sm:p-8">
+                    <div className="mb-6">
+                        <div className="flex items-start justify-between mb-4">
+                            <div>
+                                <h2 className="text-2xl sm:text-3xl font-bold text-white mb-2">{certificate.title}</h2>
+                                <div className="flex flex-wrap items-center gap-4">
+                                    <span className="bg-cyan-500/20 px-4 py-2 rounded-full text-cyan-300 font-semibold border border-cyan-400/30">
+                                        {certificate.issuer}
+                                    </span>
+                                    <span className="bg-emerald-500/20 px-4 py-2 rounded-full text-emerald-300 font-semibold border border-emerald-400/30">
+                                        {certificate.date}
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div className="relative rounded-2xl overflow-hidden bg-white/5 border border-white/10">
+                        <img 
+                            src={certificate.image} 
+                            alt={certificate.title}
+                            className="w-full h-auto max-h-[60vh] object-contain"
+                        />
+                    </div>
+                    
+                    <div className="mt-6 flex justify-center">
+                        <a
+                            href={certificate.link}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="group bg-gradient-to-r from-cyan-600 to-emerald-600 hover:from-cyan-500 hover:to-emerald-500 px-8 py-3 rounded-full text-white font-semibold transition-all duration-300 flex items-center space-x-2 shadow-lg hover:shadow-cyan-500/25"
+                        >
+                            <FaDownload className="group-hover:scale-110 transition-transform duration-300" />
+                            <span>Download Certificate</span>
+                        </a>
+                    </div>
+                </div>
+            </motion.div>
+        </motion.div>
+    );
+};
+
+// ===================================
 // KOMPONEN KARTU PROYEK
 // ===================================
 const ProjectCard = ({ project }) => {
     const techIcons = {
     "Next.js": <SiNextdotjs />, "React": <FaReact />, "TailwindCSS": <SiTailwindcss />,
-    "Framer Motion": "🎨", "Node.js": <FaNodeJs />, "Express": <SiExpress />, 
+    "Framer Motion": " गति ", "Node.js": <FaNodeJs />, "Express": <SiExpress />, 
     "MongoDB": <SiMongodb />, "JWT": "🔑", "Figma": <FaFigma />, "Storybook": "📚"
     };
 
@@ -192,6 +386,25 @@ const ProjectCard = ({ project }) => {
 function ProjectSection() {
   const [activeTab, setActiveTab] = useState('Projects');
   const [projectCategory, setProjectCategory] = useState('Web/Apps');
+  const [previewCertificate, setPreviewCertificate] = useState(null);
+  const { hideNavbar, showNavbar } = useNavbar();
+
+  // Hide/show navbar when certificate preview opens/closes
+  useEffect(() => {
+    if (previewCertificate) {
+      hideNavbar();
+    } else {
+      showNavbar();
+    }
+  }, [previewCertificate, hideNavbar, showNavbar]);
+
+  // Ensure navbar is shown when component unmounts
+  useEffect(() => {
+    return () => {
+      showNavbar();
+    };
+  }, [showNavbar]);
+
   const tabs = [
     {
       id: 'Projects',
@@ -217,7 +430,7 @@ function ProjectSection() {
   return (
     <section id="project" className="py-20">
       
-      {/* CSS for the Line Shadow Animation */}
+      {/* CSS for the Line Shadow Animation and line-clamp */}
       <style>{`
         @keyframes line-shadow-anim {
             0% { background-position: 0 0; }
@@ -235,6 +448,12 @@ function ProjectSection() {
             background-clip: text;
             color: transparent;
             animation: line-shadow-anim 30s linear infinite;
+        }
+        .line-clamp-2 {
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
         }
       `}</style>
       
@@ -364,24 +583,16 @@ function ProjectSection() {
                 </>
               )}
               {activeTab === 'Certificate' && (
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-5xl mx-auto">
-                  {dummyCertificates.map((cert, i) => (
-                    <a key={i} href={cert.link} target="_blank" rel="noopener noreferrer" className="relative h-48 sm:h-56 rounded-2xl overflow-hidden shadow-md transition-transform duration-300 hover:scale-105"
-                      style={{
-                        background: `url('${cert.image}') center/cover no-repeat`,
-                        cursor: 'pointer',
-                      }}
-                    >
-                      <div className="absolute inset-0 bg-black/50 backdrop-blur-[2px] p-4 sm:p-6 flex flex-col justify-between text-white">
-                        <div>
-                          <h3 className="text-md sm:text-lg font-bold text-cyan-300">{cert.title}</h3>
-                          <p className="text-xs sm:text-sm text-slate-300 mt-1">{cert.issuer}</p>
-                        </div>
-                        <p className="text-xs sm:text-sm text-slate-400 font-mono self-end">{cert.date}</p>
-                      </div>
-                      <div className="absolute inset-0 rounded-2xl border border-cyan-300/5 pointer-events-none"></div>
-                    </a>
-                  ))}
+                <div className="space-y-8">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
+                    {userCertificates.map((cert, i) => (
+                      <CertificateCard 
+                        key={i} 
+                        cert={cert} 
+                        onClick={setPreviewCertificate}
+                      />
+                    ))}
+                  </div>
                 </div>
               )}
               {activeTab === 'Tech Stack' && (
@@ -405,6 +616,16 @@ function ProjectSection() {
           </AnimatePresence>
         </div>
       </div>
+      
+      {/* Certificate Preview Modal */}
+      <AnimatePresence>
+        {previewCertificate && (
+          <CertificatePreviewModal 
+            certificate={previewCertificate}
+            onClose={() => setPreviewCertificate(null)}
+          />
+        )}
+      </AnimatePresence>
     </section>
   );
 }
