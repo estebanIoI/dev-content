@@ -1,12 +1,10 @@
 import React from 'react';
 
 const Skills = () => {
-  // Daftar skill yang akan ditampilkan
   const skillsList = ['React', 'Javascript', 'Node.js', 'Tailwind'];
 
   return (
-    // Kontainer flex untuk menyusun item secara horizontal dengan jarak
-    <div className="flex flex-row flex-wrap gap-3 mt-6">
+    <div className="flex flex-row flex-wrap gap-3 mt-6 justify-left w-full">
       {skillsList.map((skill) => (
         <div
           key={skill}
