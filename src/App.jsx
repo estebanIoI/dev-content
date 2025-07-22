@@ -128,7 +128,7 @@ function App() {
                             </span>
                         </VelocityScroll>
                     </div>
-                    <p className="text-lg text-cyan-200/70 mt-2 font-cascadia px-1">
+                    <p className="text-lg text-cyan-200/70 mt-2 font-cascadia px-1 mb-20">
                         ✧ Passionate about coding and creative technology ✧
                     </p>
                 </motion.div>
