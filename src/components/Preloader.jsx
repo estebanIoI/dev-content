@@ -2,22 +2,22 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Github, Linkedin, Instagram } from 'lucide-react';
-import DotGrid from './DotGrid'; // Impor komponen DotGrid
+import DotGrid from './DotGrid';
 import Spline from '@splinetool/react-spline';
 
-/**
- * Komponen Preloader dengan animasi ketik dan latar belakang DotGrid interaktif.
- * @param {object} props - Properti komponen.
- * @param {Function} props.onFinished - Callback yang dipanggil setelah animasi preloader selesai.
- * @returns {JSX.Element}
- */
 const Preloader = ({ onFinished }) => {
   const [typedText, setTypedText] = useState('');
   const [showContent, setShowContent] = useState(false);
   const [fadeOut, setFadeOut] = useState(false);
+  // 1. State baru untuk melacak status loading Spline
+  const [isAssetLoaded, setIsAssetLoaded] = useState(false);
   const fullText = "www.zainahmadfahrezi.com";
 
-  // Timer untuk memunculkan konten setelah jeda singkat
+  // 2. Fungsi yang akan dipanggil saat Spline selesai dimuat
+  const handleAssetLoad = () => {
+    setIsAssetLoaded(true);
+  };
+
   useEffect(() => {
     const initialTimer = setTimeout(() => {
       setShowContent(true);
@@ -25,52 +25,54 @@ const Preloader = ({ onFinished }) => {
     return () => clearTimeout(initialTimer);
   }, []);
 
-  // Efek untuk animasi mengetik
+  // 3. Modifikasi efek utama untuk memeriksa status loading aset
   useEffect(() => {
     if (showContent) {
+      // Logika animasi mengetik (tidak berubah)
       if (typedText.length < fullText.length) {
         const typingTimer = setTimeout(() => {
           setTypedText(fullText.slice(0, typedText.length + 1));
         }, 120);
         return () => clearTimeout(typingTimer);
-      } else {
-        // Setelah selesai mengetik, tunggu sejenak lalu mulai transisi keluar
+      } 
+      // KONDISI BARU: transisi keluar hanya jika teks selesai diketik DAN aset sudah dimuat
+      else if (typedText.length === fullText.length && isAssetLoaded) {
         const exitTimer = setTimeout(() => {
           setFadeOut(true);
-          setTimeout(onFinished, 1000); // Tunggu animasi fade-out selesai
-        }, 1500);
+          setTimeout(onFinished, 1000); // Tunggu animasi fade-out
+        }, 1500); // Jeda setelah semua selesai
         return () => clearTimeout(exitTimer);
       }
     }
-  }, [typedText, showContent, fullText, onFinished]);
+    // Tambahkan isAssetLoaded ke dependency array
+  }, [typedText, showContent, fullText, onFinished, isAssetLoaded]);
 
   return (
     <AnimatePresence>
       {!fadeOut && (
         <motion.div
-          // Animasi keluar dengan efek blur dan opacity
           exit={{
             opacity: 0,
             filter: 'blur(10px)',
             transition: { duration: 1, ease: 'easeInOut' }
           }}
-          // Kontainer utama preloader
           className="fixed inset-0 z-50 flex flex-col items-center justify-center text-white bg-[#060010]"
         >
-          {/* Latar belakang DotGrid interaktif */}
           <DotGrid />
           
-          {/* Konten Preloader */}
           {showContent && (
             <motion.div
               initial={{ opacity: 0, y: -20 }}
               animate={{ opacity: 1, y: 0, transition: { duration: 0.8, ease: "easeInOut" } }}
               className="text-center relative z-10 p-4"
             >
-              {/* Spline 3D di atas nama */}
               <div className="flex justify-center mb-2 mt-[-24px] md:mt-[-32px]">
                 <div className="w-[320px] h-[180px] md:w-[480px] md:h-[260px]">
-                  <Spline scene="https://prod.spline.design/FcZ66SFMX1YbF-0I/scene.splinecode" />
+                  {/* 4. Tambahkan prop onLoad ke komponen Spline */}
+                  <Spline 
+                    scene="https://prod.spline.design/FcZ66SFMX1YbF-0I/scene.splinecode" 
+                    onLoad={handleAssetLoad}
+                  />
                 </div>
               </div>
               <motion.h1
@@ -105,12 +107,6 @@ const Preloader = ({ onFinished }) => {
               </motion.div>
             </motion.div>
           )}
-          {/* Spline 3D di bawah layar, tengah */}
-          {/* <div className="fixed inset-x-0 bottom-0 flex justify-center items-end z-0 pointer-events-none">
-            <div className="w-[480px] h-[320px] md:w-[700px] md:h-[340px]">
-              <Spline scene="https://prod.spline.design/FcZ66SFMX1YbF-0I/scene.splinecode" />
-            </div>
-          </div> */}
         </motion.div>
       )}
     </AnimatePresence>
