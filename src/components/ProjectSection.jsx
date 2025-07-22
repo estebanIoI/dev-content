@@ -405,7 +405,7 @@ function ProjectSection() {
         transition={{ duration: 0.8, ease: "easeOut" }}
         className="text-center mb-20"
       >
-        <h2 className="text-4xl font-bold font-moderniz">
+        <h2 className="text-xl font-bold font-moderniz">
             <span style={{color: "#00ffdc"}}><LineShadowText shadowColor="#00b3a4">PORTFOLIO</LineShadowText></span>
             {' '}
             <span style={{ color: "#fff" }}><LineShadowText shadowColor="#bbbbbb">SHOWCASE</LineShadowText></span>
