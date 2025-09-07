@@ -24,7 +24,7 @@ export function AnimatedGradientTextDemo() {
         colorFrom="#4053ffff"
         colorTo="#40ecffff"
       >
-        Innovation For the Future
+        Innovación Para el Futuro
       </AnimatedGradientText>
       <ChevronRight
         className="ml-1 size-4 stroke-neutral-500 transition-transform duration-300 ease-in-out group-hover:translate-x-0.5"

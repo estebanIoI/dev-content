@@ -44,10 +44,10 @@ const ProfileCardComponent = ({
   enableTilt = true,
   miniAvatarUrl,
   name = "Javi A. Torres",
-  title = "Software Engineer",
+  title = "Ingeniero de Software",
   handle = "javicodes",
-  status = "Online",
-  contactText = "Contact",
+  status = "En línea",
+  contactText = "Contacto",
   showUserInfo = true,
   onContactClick,
 }) => {

@@ -1,45 +1,45 @@
-# ZAIN AHMAD FAHREZI PORTFOLIO PROJECT
+# PROYECTO PORTAFOLIO DE Dev Content
 
-This is a React project developed using Vite — a modern build tool known for its high performance, Hot Module Replacement (HMR) support, and fast development time.
+Este es un proyecto React desarrollado usando Vite — una herramienta de construcción moderna conocida por su alto rendimiento, soporte de Hot Module Replacement (HMR) y tiempo de desarrollo rápido.
 
-> ⚠️ This project is still under **active development**. Please do not copy, plagiarize, or redistribute any part of this project **without proper credit or permission from the author.**
+> ⚠️ Este proyecto aún está en **desarrollo activo**. Por favor no copies, plagies o redistribuyas ninguna parte de este proyecto **sin el crédito adecuado o permiso del autor.**
 
 ---
 
-## 📆 Technologies Used
+## 📆 Tecnologías Utilizadas
 
 * ⚛️ [React](https://react.dev/)
 * ⚡ [Vite](https://vitejs.dev/)
-* 💨 [Tailwind CSS](https://tailwindcss.com/) *(optional, if used)*
-* 🧪 [ESLint](https://eslint.org/) for static code analysis
-* 🔄 Fast Refresh (via Babel or SWC plugin)
+* 💨 [Tailwind CSS](https://tailwindcss.com/) *(opcional, si se usa)*
+* 🧪 [ESLint](https://eslint.org/) para análisis estático de código
+* 🔄 Fast Refresh (vía plugin Babel o SWC)
 
 ---
 
-## 🛠️ How to Run This Project
+## 🛠️ Cómo Ejecutar Este Proyecto
 
-1. **Clone this repository:**
+1. **Clonar este repositorio:**
 
    ```bash
    git clone https://github.com/username/repo-name.git
    cd repo-name
    ```
 
-2. **Install dependencies:**
+2. **Instalar dependencias:**
 
    ```bash
    npm install
    ```
 
-3. **Run the project locally:**
+3. **Ejecutar el proyecto localmente:**
 
    ```bash
    npm run dev
    ```
 
-   Then open your browser at: [http://localhost:5173](http://localhost:5173)
+   Luego abre tu navegador en: [http://localhost:5173](http://localhost:5173)
 
-4. **Build for production (optional):**
+4. **Construir para producción (opcional):**
 
    ```bash
    npm run build
@@ -47,35 +47,35 @@ This is a React project developed using Vite — a modern build tool known for i
 
 ---
 
-## ❗ Copyright & License
+## ❗ Derechos de Autor y Licencia
 
-This project is an original work by **Zain Ahmad Fahrezi** and is intended for personal reference use only.
+Este proyecto es un trabajo original de **Dev Content** y está destinado únicamente para uso de referencia personal.
 
-🚫 **Strictly prohibited to plagiarize, reupload, or use any part of the code without proper credit or permission.**
+🚫 **Estrictamente prohibido plagiar, resubir o usar cualquier parte del código sin el crédito adecuado o permiso.**
 
-📄 For license details or collaboration inquiries, feel free to contact me directly via GitHub.
-
----
-
-## 📌 Additional Notes
-
-If you wish to build upon this project or use parts of its ideas/code, **you must provide proper credit with a link to this repository**.
-
-Thank you for respecting the developer's work! 🙏
+📄 Para detalles de la licencia o consultas de colaboración, no dudes en contactarme directamente vía GitHub.
 
 ---
 
-## 💖 Support the Developer
+## 📌 Notas Adicionales
 
-If you find this project helpful and wish to support:
+Si deseas construir sobre este proyecto o usar partes de sus ideas/código, **debes proporcionar el crédito adecuado con un enlace a este repositorio**.
+
+¡Gracias por respetar el trabajo del desarrollador! 🙏
+
+---
+
+## 💖 Apoya al Desarrollador
+
+Si encuentras este proyecto útil y deseas apoyar:
 
 * 💳 **Dana:** 0896-0433-2830
-* 🏦 **BRI Bank Account:** 0342 0107 8321 503 (Zain Ahmad Fahrezi)
+* 🏦 **Cuenta Bancaria BRI:** 0342 0107 8321 503 (Dev Content)
 * Paypal : paypal.me/zainahmadfahrezi
 
-Your support mePayns a lot and helps me continue building open-source projects. Thank you! 🙌
+Tu apoyo significa mucho y me ayuda a continuar construyendo proyectos de código abierto. ¡Gracias! 🙌
 
-## 🌐 Social Media
+## 🌐 Redes Sociales
 
 * 💼 [LinkedIn](https://www.linkedin.com/in/zainahmadfahrezi)
 * 📸 Instagram: [@zain.ahmadf](https://www.instagram.com/zain.ahmadf)

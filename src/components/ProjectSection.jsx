@@ -19,49 +19,49 @@ import { useNavbar } from '../contexts/NavbarContext';
 // ===================================
 const dummyProjects = [
     {
-    title: "Portfolio v2",
-    description: "Website portofolio pribadi yang dibangun dengan React, Next.js, dan Tailwind CSS, di-deploy di Vercel.",
+    title: "Portafolio v2",
+    description: "Sitio web de portafolio personal construido con React, Next.js y Tailwind CSS, desplegado en Vercel.",
     tech: ["Next.js", "React", "TailwindCSS", "Framer Motion"],
     link: "https://github.com/username/portfolio",
     image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=2070&auto=format&fit=crop",
     category: "Web/Apps",
   },
   {
-    title: "E-Commerce API",
-    description: "RESTful API untuk platform e-commerce dengan fitur otentikasi, manajemen produk, dan transaksi.",
+    title: "API E-Commerce",
+    description: "API RESTful para plataforma de e-commerce con características de autenticación, gestión de productos y transacciones.",
     tech: ["Node.js", "Express", "MongoDB", "JWT"],
     link: "https://github.com/username/ecommerce-api",
     image: "https://images.unsplash.com/photo-1522199755839-a2bacb67c546?q=80&w=2072&auto=format&fit=crop",
     category: "Web/Apps",
   },
   {
-    title: "UI Design System",
-    description: "Merancang komponen UI yang reusable dan konsisten untuk aplikasi web menggunakan Figma.",
+    title: "Sistema de Diseño UI",
+    description: "Diseño de componentes UI reutilizables y consistentes para aplicaciones web usando Figma.",
     tech: ["Figma", "Storybook"],
     link: "#",
     image: "https://images.unsplash.com/photo-1600132806378-62402124d9e0?q=80&w=2070&auto=format&fit=crop",
     category: "Web/Apps",
   },
   {
-    title: "3D Product Visualization",
-    description: "Desain 3D interaktif untuk showcase produk menggunakan Spline dan Blender.",
+    title: "Visualización de Producto 3D",
+    description: "Diseño 3D interactivo para showcase de productos usando Spline y Blender.",
     tech: ["Spline", "Blender"],
     link: "#",
     image: "https://images.unsplash.com/photo-1506744038136-46273834b3fb?q=80&w=2070&auto=format&fit=crop",
-    category: "3D Design",
+    category: "Diseño 3D",
   },
   {
-    title: "Animated 3D Landing",
-    description: "Landing page dengan elemen 3D animasi untuk branding modern.",
+    title: "Landing 3D Animado",
+    description: "Página de aterrizaje con elementos 3D animados para branding moderno.",
     tech: ["Spline", "Three.js"],
     link: "#",
     image: "https://images.unsplash.com/photo-1465101046530-73398c7f28ca?q=80&w=2070&auto=format&fit=crop",
-    category: "3D Design",
+    category: "Diseño 3D",
   },
 ];
 
 // ===================================
-// DATA SERTIFIKAT ZAIN AHMAD FAHREZI
+// DATA SERTIFIKAT Dev Content
 // ===================================
 const userCertificates = [
     {
@@ -82,8 +82,8 @@ const userCertificates = [
         title: "Junior Web Developer (BNSP)",
         issuer: "Badan Nasional Sertifikasi Profesi (BNSP)",
         date: "Sep 2024",
-        link: "/certificates/SERTIFIKAT BNSP JUNIOR WEB DEVELOPER ZAIN AHMAD FAHREZI.jpeg",
-        image: "/certificate-images/SERTIFIKAT BNSP JUNIOR WEB DEVELOPER ZAIN AHMAD FAHREZI.jpg",
+        link: "/certificates/SERTIFIKAT BNSP JUNIOR WEB DEVELOPER Dev Content.jpeg",
+        image: "/certificate-images/SERTIFIKAT BNSP JUNIOR WEB DEVELOPER Dev Content.jpg",
     },
     {
         title: "Belajar Membuat Front-End Web untuk Pemula",
@@ -178,7 +178,7 @@ const techStack = {
     { name: "Git & GitHub", icon: <FaGithub className="text-white" /> },
     { name: "Vercel", icon: <SiVercel className="text-white" /> },
     { name: "Figma", icon: <FaFigma className="text-[#F24E1E]" /> },
-    { name: "Tools Lain", icon: <FaTools className="text-gray-400" /> },
+    { name: "Otras Herramientas", icon: <FaTools className="text-gray-400" /> },
   ],
 };
 
@@ -234,7 +234,7 @@ const CertificateCard = ({ cert, onClick }) => {
                         <div className="flex items-center justify-between">
                             <div className="flex items-center space-x-2 text-slate-300">
                                 <FaDownload className="text-sm" />
-                                <span className="text-sm font-medium">View Certificate</span>
+                                <span className="text-sm font-medium">Ver Certificado</span>
                             </div>
                             <div className="opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                                 <div className="bg-cyan-500/20 backdrop-blur-md p-2 rounded-full border border-cyan-400/30">
@@ -295,7 +295,7 @@ const CertificatePreviewModal = ({ certificate, onClose }) => {
                     <div className="mt-6 flex justify-center">
                         <a href={certificate.link} target="_blank" rel="noopener noreferrer" className="group bg-gradient-to-r from-cyan-600 to-emerald-600 hover:from-cyan-500 hover:to-emerald-500 px-8 py-3 rounded-full text-white font-semibold transition-all duration-300 flex items-center space-x-2 shadow-lg hover:shadow-cyan-500/25">
                             <FaDownload className="group-hover:scale-110 transition-transform duration-300" />
-                            <span>Download Certificate</span>
+                            <span>Descargar Certificado</span>
                         </a>
                     </div>
                 </div>
@@ -350,7 +350,7 @@ function ProjectSection() {
   const [previewCertificate, setPreviewCertificate] = useState(null);
   const { hideNavbar, showNavbar } = useNavbar();
 
-  // === CHANGE START: State dan konstanta untuk Show More/Less ===
+  // === CHANGE START: State y constante para Show More/Less ===
   const INITIAL_CERTIFICATES_TO_SHOW = 6;
   const [visibleCertificatesCount, setVisibleCertificatesCount] = useState(INITIAL_CERTIFICATES_TO_SHOW);
   // === CHANGE END ===
@@ -370,8 +370,8 @@ function ProjectSection() {
   }, [showNavbar]);
 
   const tabs = [
-    { id: 'Projects', label: 'Projects', icon: <PiCodeBold className="text-[1.7em] mb-1" /> },
-    { id: 'Certificate', label: 'Certificates', icon: <LuBadge className="text-[1.5em] mb-1" /> },
+    { id: 'Projects', label: 'Proyectos', icon: <PiCodeBold className="text-[1.7em] mb-1" /> },
+    { id: 'Certificate', label: 'Certificados', icon: <LuBadge className="text-[1.5em] mb-1" /> },
     { id: 'Tech Stack', label: 'Tech Stack', icon: <LiaLayerGroupSolid className="text-[1.5em] mb-1" /> },
   ];
 
@@ -379,7 +379,7 @@ function ProjectSection() {
     (p) => p.category === projectCategory
   );
 
-  // === CHANGE START: Handler untuk tombol Show More/Less ===
+  // === CHANGE START: Handler para botón Show More/Less ===
   const handleShowMore = () => {
     setVisibleCertificatesCount(userCertificates.length);
   };
@@ -406,7 +406,7 @@ function ProjectSection() {
         className="text-center mb-20"
       >
         <h2 className="text-4xl font-bold font-moderniz">
-            <span style={{color: "#00ffdc"}}><LineShadowText shadowColor="#00b3a4">PORTFOLIO</LineShadowText></span>
+            <span style={{color: "#00ffdc"}}><LineShadowText shadowColor="#00b3a4">PORTAFOLIO</LineShadowText></span>
             {' '}
             <span style={{ color: "#fff" }}><LineShadowText shadowColor="#bbbbbb">SHOWCASE</LineShadowText></span>
         </h2>
@@ -463,13 +463,13 @@ function ProjectSection() {
                 <>
                   <div className="flex justify-center gap-4 mb-8">
                     <button className={`px-5 py-2 rounded-full font-semibold transition-all duration-200 border ${projectCategory === 'Web/Apps' ? 'bg-cyan-700/80 text-white border-cyan-400 shadow-cyan-500/10 shadow-lg' : 'bg-slate-900/60 text-cyan-200 border-slate-700 hover:bg-cyan-800/40 hover:text-white'}`} onClick={() => setProjectCategory('Web/Apps')}>Web/Apps</button>
-                    <button className={`px-5 py-2 rounded-full font-semibold transition-all duration-200 border ${projectCategory === '3D Design' ? 'bg-cyan-700/80 text-white border-cyan-400 shadow-cyan-500/10 shadow-lg' : 'bg-slate-900/60 text-cyan-200 border-slate-700 hover:bg-cyan-800/40 hover:text-white'}`} onClick={() => setProjectCategory('3D Design')}>3D Design</button>
+                    <button className={`px-5 py-2 rounded-full font-semibold transition-all duration-200 border ${projectCategory === 'Diseño 3D' ? 'bg-cyan-700/80 text-white border-cyan-400 shadow-cyan-500/10 shadow-lg' : 'bg-slate-900/60 text-cyan-200 border-slate-700 hover:bg-cyan-800/40 hover:text-white'}`} onClick={() => setProjectCategory('Diseño 3D')}>Diseño 3D</button>
                   </div>
                   <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                     {filteredProjects.length > 0 ? (
                       filteredProjects.map((p, i) => <ProjectCard key={i} project={p} />)
                     ) : (
-                      <div className="col-span-full text-center text-slate-400 py-12">No projects in this category yet.</div>
+                      <div className="col-span-full text-center text-slate-400 py-12">No hay proyectos en esta categoría aún.</div>
                     )}
                   </div>
                 </>
@@ -477,14 +477,14 @@ function ProjectSection() {
               {activeTab === 'Certificate' && (
                 <div className="space-y-8">
                   <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
-                    {/* === CHANGE: Menggunakan slice untuk menampilkan sertifikat yang terlihat === */}
+                    {/* === CHANGE: Usar slice para mostrar certificados visibles === */}
                     <AnimatePresence>
                       {userCertificates.slice(0, visibleCertificatesCount).map((cert, i) => (
                         <CertificateCard key={i} cert={cert} onClick={setPreviewCertificate} />
                       ))}
                     </AnimatePresence>
                   </div>
-                  {/* === CHANGE START: Menambahkan tombol Show More/Less secara kondisional === */}
+                  {/* === CHANGE START: Agregar botón Show More/Less condicionalmente === */}
                   {userCertificates.length > INITIAL_CERTIFICATES_TO_SHOW && (
                     <div className="flex justify-center mt-12">
                       {visibleCertificatesCount < userCertificates.length ? (
@@ -494,7 +494,7 @@ function ProjectSection() {
                           whileHover={{ scale: 1.05 }}
                           whileTap={{ scale: 0.95 }}
                         >
-                          Show More
+                          Ver Más
                         </motion.button>
                       ) : (
                         <motion.button
@@ -503,7 +503,7 @@ function ProjectSection() {
                           whileHover={{ scale: 1.05 }}
                           whileTap={{ scale: 0.95 }}
                         >
-                          Show Less
+                          Ver Menos
                         </motion.button>
                       )}
                     </div>
