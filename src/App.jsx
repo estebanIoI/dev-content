@@ -5,7 +5,7 @@ import { ParticleTextEffect } from './components/ParticleTextEffect';
 import TextGenerateEffect from "./components/text-generate-effect";
 import GradientText from './components/GradientText';
 import { AnimatedGradientTextDemo } from './components/AnimatedGradientTextDemo';
-import Lanyard from './components/Lanyard/Lanyard';
+import LanyardCarousel from './components/LanyardCarousel';
 import Skills from './components/Skills';
 import { ButtonMovingBorder } from './components/MovingBorderButton';
 import { motion } from "framer-motion";
@@ -98,11 +98,9 @@ function App() {
                 </motion.div>
               </div>
 
-              {/* 3. Render Lanyard secara kondisional */}
+              {/* 3. Render LanyardCarousel secara kondisional */}
               <div className="hidden lg:flex flex-1 justify-center h-[600px] w-full order-first lg:order-none">
-                {is3dEnabled && (
-                  <Lanyard position={[0, 0, 15]} gravity={[0, -40, 0]} fov={18} transparent={true} />
-                )}
+                <LanyardCarousel is3dEnabled={is3dEnabled} />
               </div>
             </section>
 
