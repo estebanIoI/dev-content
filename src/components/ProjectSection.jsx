@@ -398,6 +398,61 @@ function ProjectSection() {
         .line-clamp-2 { display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
       `}</style>
       
+      {/* Contenedor transparente con el tamaño del texto de las partículas */}
+      <motion.div
+        initial={{ opacity: 0, y: -20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, amount: 0.2 }}
+        transition={{ duration: 0.6, ease: "easeOut" }}
+        className="flex justify-center mb-8"
+      >
+        <div 
+          className="relative flex items-center justify-center bg-transparent"
+          style={{
+            width: 'fit-content',
+            minWidth: '900px',
+            height: '150px',
+            fontSize: '100px',
+            fontWeight: 'bold',
+            fontFamily: 'Arial',
+          }}
+        >
+          {/* Contenido invisible para mantener las dimensiones del texto de partículas */}
+          <span 
+            className="opacity-0 select-none pointer-events-none whitespace-nowrap"
+            style={{
+              fontSize: '100px',
+              fontWeight: 'bold',
+              fontFamily: 'Arial',
+            }}
+          >
+            DEVCONTENT
+          </span>
+        </div>
+      </motion.div>
+
+      {/* Segundo contenedor transparente consecutivo */}
+      <motion.div
+        initial={{ opacity: 0, y: -20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, amount: 0.2 }}
+        transition={{ duration: 0.6, ease: "easeOut", delay: 0.2 }}
+        className="flex justify-center mb-8"
+      >
+        <div 
+          className="relative flex items-center justify-center bg-transparent"
+          style={{
+            width: 'fit-content',
+            minWidth: '1000px',
+            height: '400px',
+            fontSize: '100px',
+            fontWeight: 'bold',
+            fontFamily: 'Arial',
+          }}
+        >
+        </div>
+      </motion.div>
+
       <motion.div
         initial={{ opacity: 0, y: 50 }}
         whileInView={{ opacity: 1, y: 0 }}
@@ -408,7 +463,7 @@ function ProjectSection() {
         <h2 className="text-4xl font-bold font-moderniz">
             <span style={{color: "#00ffdc"}}><LineShadowText shadowColor="#00b3a4">PORTAFOLIO</LineShadowText></span>
             {' '}
-            <span style={{ color: "#fff" }}><LineShadowText shadowColor="#bbbbbb">SHOWCASE</LineShadowText></span>
+            
         </h2>
       </motion.div>
 

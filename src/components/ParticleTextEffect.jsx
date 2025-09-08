@@ -8,16 +8,16 @@ class Particle {
   acc = { x: 0, y: 0 }
   target = { x: 0, y: 0 }
 
-  closeEnoughTarget = 100
-  maxSpeed = 1.0
-  maxForce = 0.1
+  closeEnoughTarget = 80
+  maxSpeed = 2.5
+  maxForce = 0.2
   particleSize = 10
   isKilled = false
 
   startColor = { r: 0, g: 0, b: 0 }
   targetColor = { r: 0, g: 0, b: 0 }
   colorWeight = 0
-  colorBlendRate = 0.01
+  colorBlendRate = 0.03
 
   move() {
     // Check if particle is close enough to its target to slow down
@@ -129,7 +129,7 @@ class Particle {
   }
 }
 
-const DEFAULT_WORDS = ["ZAIN", "AHMAD", "FAHREZI", "DESARROLLADOR", "FRONTEND"]
+const DEFAULT_WORDS = ["DEV - CONTENT", "DEVELOPERS", "FULL STACK"]
 
 export function ParticleTextEffect({ words = DEFAULT_WORDS }) {
   const canvasRef = useRef(null)
@@ -139,7 +139,7 @@ export function ParticleTextEffect({ words = DEFAULT_WORDS }) {
   const wordIndexRef = useRef(0)
   const mouseRef = useRef({ x: 0, y: 0, isPressed: false, isRightClick: false })
 
-  const pixelSteps = 6
+  const pixelSteps = 4
   const drawAsPoints = true
 
   const generateRandomPos = (x, y, mag) => {
@@ -180,11 +180,11 @@ export function ParticleTextEffect({ words = DEFAULT_WORDS }) {
     const imageData = offscreenCtx.getImageData(0, 0, canvas.width, canvas.height)
     const pixels = imageData.data
 
-    // Generate new color
+    // Use white color for all particles
     const newColor = {
-      r: Math.random() * 255,
-      g: Math.random() * 255,
-      b: Math.random() * 255,
+      r: 255,
+      g: 255,
+      b: 255,
     }
 
     const particles = particlesRef.current
@@ -223,10 +223,10 @@ export function ParticleTextEffect({ words = DEFAULT_WORDS }) {
           particle.pos.x = randomPos.x
           particle.pos.y = randomPos.y
 
-          particle.maxSpeed = Math.random() * 6 + 4
-          particle.maxForce = particle.maxSpeed * 0.05
+          particle.maxSpeed = Math.random() * 8 + 6
+          particle.maxForce = particle.maxSpeed * 0.08
           particle.particleSize = Math.random() * 6 + 6
-          particle.colorBlendRate = Math.random() * 0.0275 + 0.0025
+          particle.colorBlendRate = Math.random() * 0.04 + 0.02
 
           particles.push(particle)
         }
@@ -293,9 +293,9 @@ export function ParticleTextEffect({ words = DEFAULT_WORDS }) {
       })
     }
 
-    // Auto-advance words
+    // Auto-advance words (reducido de 300 a 180 frames para cambios más rápidlos cambios os)
     frameCountRef.current++
-    if (frameCountRef.current % 300 === 0) {
+    if (frameCountRef.current % 180 === 0) {
       wordIndexRef.current = (wordIndexRef.current + 1) % words.length
       nextWord(words[wordIndexRef.current], canvas)
     }

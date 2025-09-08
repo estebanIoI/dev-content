@@ -43,7 +43,7 @@ function App() {
         <div className="relative min-h-screen bg-[#060010] overflow-hidden">
           {/* FONDO CON EFECTO DE PARTÍCULAS */}
           <div className="absolute inset-0 z-0">
-            <ParticleTextEffect words={["ZAIN", "AHMAD", "FAHREZI", "DESARROLLADOR", "FRONTEND"]} />
+            <ParticleTextEffect words={["DEV - CONTENT", "DESARROLLADORES", "FULL STACK"]} />
           </div>
           
           {/* 2. Tombol untuk mengaktifkan/menonaktifkan aset 3D */}
