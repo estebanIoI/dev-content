@@ -222,7 +222,7 @@ const LanyardCarousel = ({ is3dEnabled = true }) => {
           {isAutoPlay ? <FaPause className="w-3 h-3" /> : <FaPlay className="w-3 h-3" />}
         </button>
 
-        {/* Indicador de estado */}
+        {/* Indicador de estado  */}
         <div className="bg-slate-900/80 border border-slate-700 rounded-lg px-3 py-1 backdrop-blur-sm">
           <div className="flex items-center space-x-2">
             <div className={`w-2 h-2 rounded-full ${isAutoPlay ? 'bg-green-400 animate-pulse' : 'bg-red-400'}`}></div>

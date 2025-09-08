@@ -8,8 +8,9 @@ import { MeshLineGeometry, MeshLineMaterial } from 'meshline';
 import * as THREE from 'three';
 
 // Importar diferentes texturas
-import lanyard1 from '../../assets/Lanyard/lanyard.png';
-import cardLanyard from '../../assets/Lanyard/card lanyard.png';
+import lanyard1 from '../../assets/Lanyard/card lanyard1.png';
+import cardLanyard from '../../assets/Lanyard/card lanyard1.png';
+import lanyardBand from '../../assets/Lanyard/lanyard.png'; // Para la banda
 
 const cardGLB = '/models/card.glb';
 
@@ -67,7 +68,17 @@ function Band({ maxSpeed = 50, minSpeed = 0, variant = 1 }) {
     }
   };
 
-  const texture = useTexture(getLanyardTexture());
+  const texture = useTexture(lanyardBand); // Usar lanyard.png para la banda
+  const cardTexture = useTexture(getLanyardTexture()); // Usar texturas específicas para la tarjeta
+  
+  // Configurar la textura de la tarjeta
+  useEffect(() => {
+    if (cardTexture) {
+      cardTexture.flipY = false;
+      cardTexture.wrapS = cardTexture.wrapT = THREE.ClampToEdgeWrapping;
+      cardTexture.needsUpdate = true;
+    }
+  }, [cardTexture]);
   
   const [curve] = useState(() => new THREE.CatmullRomCurve3([new THREE.Vector3(), new THREE.Vector3(), new THREE.Vector3(), new THREE.Vector3()]));
   const [dragged, drag] = useState(false);
@@ -180,7 +191,7 @@ function Band({ maxSpeed = 50, minSpeed = 0, variant = 1 }) {
             onPointerDown={(e) => (e.target.setPointerCapture(e.pointerId), drag(new THREE.Vector3().copy(e.point).sub(vec.copy(card.current.translation()))))}>
             <mesh geometry={nodes.card.geometry}>
               <meshPhysicalMaterial 
-                map={materials.base.map} 
+                map={cardTexture} 
                 map-anisotropy={16} 
                 clearcoat={cardMaterialProps.clearcoat} 
                 clearcoatRoughness={0.15} 
