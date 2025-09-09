@@ -26,7 +26,7 @@ const LanyardCarousel = ({ is3dEnabled = true }) => {
       gravity: [0, -35, 0],
       fov: 20,
       variant: 2,
-      description: "Harold"
+      description: "Maicol"
     },
     {
       id: 3,
@@ -35,7 +35,7 @@ const LanyardCarousel = ({ is3dEnabled = true }) => {
       gravity: [0, -45, 0],
       fov: 16,
       variant: 3,
-      description: "Maicol"
+      description: "Harold"
     },
     {
       id: 4,

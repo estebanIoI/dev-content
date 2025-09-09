@@ -10,6 +10,7 @@ import * as THREE from 'three';
 // Importar diferentes texturas
 import lanyard1 from '../../assets/Lanyard/card lanyard1.png';
 import cardLanyard from '../../assets/Lanyard/card lanyard1.png';
+import cardLanyard2 from '../../assets/Lanyard/card lanyard2.png'; // Para Harold (card 2)
 import lanyardBand from '../../assets/Lanyard/lanyard.png'; // Para la banda
 
 const cardGLB = '/models/card.glb';
@@ -58,7 +59,7 @@ function Band({ maxSpeed = 50, minSpeed = 0, variant = 1 }) {
       case 1:
         return lanyard1;
       case 2:
-        return cardLanyard;
+        return cardLanyard2; // Harold usa card lanyard2.png
       case 3:
         return lanyard1; // Reutilizar con diferente color
       case 4:

@@ -258,8 +258,8 @@ export function ParticleTextEffect({ words = DEFAULT_WORDS }) {
     const ctx = canvas.getContext("2d")
     const particles = particlesRef.current
 
-    // Background with motion blur
-    ctx.fillStyle = "rgba(6, 0, 16, 0.1)"
+    // Clear background completely (no motion blur trail)
+    ctx.fillStyle = "rgba(0, 0, 0, 1)"
     ctx.fillRect(0, 0, canvas.width, canvas.height)
 
     // Update and draw particles
@@ -366,7 +366,7 @@ export function ParticleTextEffect({ words = DEFAULT_WORDS }) {
     <canvas
       ref={canvasRef}
       className="absolute inset-0 w-full h-full"
-      style={{ background: 'rgba(6, 0, 16, 1)' }}
+      style={{ background: 'rgba(0, 0, 0, 1)' }}
     />
   )
 }

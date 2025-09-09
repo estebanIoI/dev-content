@@ -11,7 +11,7 @@ const Preloader = ({ onFinished }) => {
   const [fadeOut, setFadeOut] = useState(false);
   // 1. State baru untuk melacak status loading Spline
   const [isAssetLoaded, setIsAssetLoaded] = useState(false);
-  const fullText = "www.zainahmadfahrezi.com";
+  const fullText = "www.DevContent.com";
 
   // 2. Fungsi yang akan dipanggil saat Spline selesai dimuat
   const handleAssetLoad = () => {
