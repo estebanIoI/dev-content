@@ -136,7 +136,4 @@ cardTexture.needsUpdate = true;         // Fuerza actualización
 4. Si hay problemas de orientación, ajustar las propiedades de textura en los useEffect
 
 ---
-*Última actualización: Septiembre 9, 2025*
-*Cambios realizados:*
-*- Inicial: lanyard.png → card lanyard1.png*
-*- Card 2 (Harold): card lanyard1.png → card lanyard2.png*
+

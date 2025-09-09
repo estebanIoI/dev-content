@@ -11,6 +11,8 @@ import * as THREE from 'three';
 import lanyard1 from '../../assets/Lanyard/card lanyard1.png';
 import cardLanyard from '../../assets/Lanyard/card lanyard1.png';
 import cardLanyard2 from '../../assets/Lanyard/card lanyard2.png'; // Para Harold (card 2)
+import cardLanyard3 from '../../assets/Lanyard/card lanyard3.png'; // Para Harold (card 3)
+import cardLanyard4 from '../../assets/Lanyard/card lanyard4.png'; // Para Adrian (card 4)
 import lanyardBand from '../../assets/Lanyard/lanyard.png'; // Para la banda
 
 const cardGLB = '/models/card.glb';
@@ -61,9 +63,9 @@ function Band({ maxSpeed = 50, minSpeed = 0, variant = 1 }) {
       case 2:
         return cardLanyard2; // Harold usa card lanyard2.png
       case 3:
-        return lanyard1; // Reutilizar con diferente color
+        return cardLanyard3; // Harold usa card lanyard3.png
       case 4:
-        return cardLanyard; // Reutilizar con diferente color
+        return cardLanyard4; // Adrian usa card lanyard4.png
       default:
         return lanyard1;
     }
