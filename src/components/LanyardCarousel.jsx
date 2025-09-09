@@ -5,7 +5,7 @@ import LanyardVariant from './Lanyard/LanyardVariant';
 
 const LanyardCarousel = ({ is3dEnabled = true }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
-  const [isAutoPlay, setIsAutoPlay] = useState(true);
+  const [isAutoPlay, setIsAutoPlay] = useState(false);
   const [progress, setProgress] = useState(0);
 
   // Configuración de los diferentes lanyards
@@ -97,21 +97,18 @@ const LanyardCarousel = ({ is3dEnabled = true }) => {
     setIsAutoPlay(false);
     setProgress(0);
     setCurrentIndex(currentIndex === 0 ? lanyardConfigs.length - 1 : currentIndex - 1);
-    setTimeout(() => setIsAutoPlay(true), 15000); // Reanudar auto-play después de 15 segundos
   };
 
   const goToNext = () => {
     setIsAutoPlay(false);
     setProgress(0);
     setCurrentIndex(currentIndex === lanyardConfigs.length - 1 ? 0 : currentIndex + 1);
-    setTimeout(() => setIsAutoPlay(true), 15000); // Reanudar auto-play después de 15 segundos
   };
 
   const goToSlide = (index) => {
     setIsAutoPlay(false);
     setProgress(0);
     setCurrentIndex(index);
-    setTimeout(() => setIsAutoPlay(true), 15000); // Reanudar auto-play después de 15 segundos
   };
 
   const toggleAutoPlay = () => {
