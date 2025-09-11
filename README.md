@@ -71,12 +71,12 @@ Si encuentras este proyecto útil y deseas apoyar:
 
 * 💳 **Dana:** 0896-0433-2830
 * 🏦 **Cuenta Bancaria BRI:** 0342 0107 8321 503 (Dev Content)
-* Paypal : paypal.me/zainahmadfahrezi
+*
 
 Tu apoyo significa mucho y me ayuda a continuar construyendo proyectos de código abierto. ¡Gracias! 🙌
 
 ## 🌐 Redes Sociales
 
-* 💼 [LinkedIn](https://www.linkedin.com/in/zainahmadfahrezi)
-* 📸 Instagram: [@zain.ahmadf](https://www.instagram.com/zain.ahmadf)
-* 🎥 TikTok: [@zainahmad.f](https://www.tiktok.com/@zainahmad.f)
+* 💼 [LinkedIn](link de linkedin)
+* 📸 Instagram: [](link de instagraman)
+* 🎥 TikTok: [](link de tiktok)

@@ -170,6 +170,42 @@ export function ParticleTextEffect({ words = DEFAULT_WORDS }) {
     offscreenCanvas.height = canvas.height
     const offscreenCtx = offscreenCanvas.getContext("2d")
 
+    // Draw Git logo (simple version using circles and lines)
+    const logoSize = 60
+    const logoX = canvas.width / 1.5
+    const logoY = canvas.height / 2.5 // Position above text
+    
+    offscreenCtx.fillStyle = "white"
+    offscreenCtx.strokeStyle = "white"
+    offscreenCtx.lineWidth = 4
+    
+    // Main circle (repository)
+    offscreenCtx.beginPath()
+    offscreenCtx.arc(logoX, logoY, logoSize / 2, 0, 2 * Math.PI)
+    offscreenCtx.stroke()
+    
+    // Branch lines
+    offscreenCtx.beginPath()
+    offscreenCtx.moveTo(logoX - logoSize / 3, logoY - logoSize / 3)
+    offscreenCtx.lineTo(logoX + logoSize / 3, logoY - logoSize / 3)
+    offscreenCtx.moveTo(logoX - logoSize / 3, logoY)
+    offscreenCtx.lineTo(logoX + logoSize / 3, logoY)
+    offscreenCtx.moveTo(logoX - logoSize / 3, logoY + logoSize / 3)
+    offscreenCtx.lineTo(logoX + logoSize / 3, logoY + logoSize / 3)
+    offscreenCtx.stroke()
+    
+    // Small circles (commits)
+    const commitSize = 6
+    offscreenCtx.beginPath()
+    offscreenCtx.arc(logoX - logoSize / 3, logoY - logoSize / 3, commitSize, 0, 2 * Math.PI)
+    offscreenCtx.fill()
+    offscreenCtx.beginPath()
+    offscreenCtx.arc(logoX, logoY - logoSize / 3, commitSize, 0, 2 * Math.PI)
+    offscreenCtx.fill()
+    offscreenCtx.beginPath()
+    offscreenCtx.arc(logoX + logoSize / 3, logoY - logoSize / 3, commitSize, 0, 2 * Math.PI)
+    offscreenCtx.fill()
+
     // Draw text
     offscreenCtx.fillStyle = "white"
     offscreenCtx.font = "bold 100px Arial"

@@ -3,14 +3,13 @@ import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from "framer-motion";
 import { 
   FaExternalLinkAlt, FaReact, FaNodeJs, FaHtml5, FaCss3Alt, 
-  FaJsSquare, FaTools, FaFigma, FaGithub, FaTimes, FaDownload
+  FaJsSquare, FaTools, FaFigma, FaGithub
 } from 'react-icons/fa';
 import { 
   SiTailwindcss, SiNextdotjs, SiVercel, SiMongodb, 
   SiExpress, SiPostgresql 
 } from 'react-icons/si';
 import { PiCodeBold } from "react-icons/pi";
-import { LuBadge } from "react-icons/lu";
 import { LiaLayerGroupSolid } from "react-icons/lia";
 import { useNavbar } from '../contexts/NavbarContext';
 
@@ -39,7 +38,15 @@ const dummyProjects = [
     description: "Diseño de componentes UI reutilizables y consistentes para aplicaciones web usando Figma.",
     tech: ["Figma", "Storybook"],
     link: "#",
-    image: "https://images.unsplash.com/photo-1600132806378-62402124d9e0?q=80&w=2070&auto=format&fit=crop",
+    image: "https://sandbox.imgix.com/view?url=http://assets.imgix.net/docs/rendering-api/digital-art-03.jpeg?auto%3Dcompress%252Cformat%26w%3D800&_gl=1*350mcv*_gcl_au*MTAzNzg1NzIzNS4xNzU3NTU4Nzc2*_ga*NTQ1Nzc3MDIyLjE3NTc1NTg3MDQ.*_ga_1KBDHG7PB8*czE3NTc1NTg3NzUkbzEkZzEkdDE3NTc1NTg4NDIkajU3JGwwJGgw",
+    category: "Web/Apps",
+  },
+  {
+    title: "Formulario Admin",
+    description: "Sistema de administración web con interfaz intuitiva para gestión de usuarios y contenido.",
+    tech: ["React", "Node.js", "Express", "MongoDB"],
+    link: "http://62.146.231.110:5000/login",
+    image: "/apps/formularioadmin.png",
     category: "Web/Apps",
   },
   {
@@ -58,103 +65,6 @@ const dummyProjects = [
     image: "https://images.unsplash.com/photo-1465101046530-73398c7f28ca?q=80&w=2070&auto=format&fit=crop",
     category: "Diseño 3D",
   },
-];
-
-// ===================================
-// DATA SERTIFIKAT Dev Content
-// ===================================
-const userCertificates = [
-    {
-        title: "Belajar Membuat Aplikasi Web dengan React",
-        issuer: "Dicoding Indonesia",
-        date: "Des 2024",
-        link: "/certificates/Belajar Membuat Aplikasi Web dengan React.pdf",
-        image: "/certificate-images/Belajar Membuat Aplikasi Web dengan React.jpg",
-    },
-    {
-        title: "Belajar Dasar Pemrograman JavaScript",
-        issuer: "Dicoding Indonesia",
-        date: "Des 2024",
-        link: "/certificates/Belajar Dasar Pemrograman JavaScript.pdf",
-        image: "/certificate-images/Belajar Dasar Pemrograman JavaScript.jpg",
-    },
-    {
-        title: "Junior Web Developer (BNSP)",
-        issuer: "Badan Nasional Sertifikasi Profesi (BNSP)",
-        date: "Sep 2024",
-        link: "/certificates/SERTIFIKAT BNSP JUNIOR WEB DEVELOPER Dev Content.jpeg",
-        image: "/certificate-images/SERTIFIKAT BNSP JUNIOR WEB DEVELOPER Dev Content.jpg",
-    },
-    {
-        title: "Belajar Membuat Front-End Web untuk Pemula",
-        issuer: "Dicoding Indonesia",
-        date: "Des 2024",
-        link: "/certificates/Belajar Membuat Front-End Web untuk Pemula.pdf",
-        image: "/certificate-images/Belajar Membuat Front-End Web untuk Pemula.jpg",
-    },
-    {
-        title: "Operator Komputer Madya (BNSP)",
-        issuer: "Badan Nasional Sertifikasi Profesi (BNSP)",
-        date: "Des 2024",
-        link: "/certificates/Operator Komputer Madya BNSP.jpeg",
-        image: "/certificate-images/Operator Komputer Madya BNSP.jpg",
-    },
-    {
-        title: "Belajar Dasar Data Science",
-        issuer: "Dicoding Indonesia",
-        date: "Okt 2024",
-        link: "/certificates/Belajar Dasar Data Science.pdf",
-        image: "/certificate-images/Belajar Dasar Data Science.jpg",
-    },
-    {
-        title: "Belajar Dasar Structured Query Language (SQL)",
-        issuer: "Dicoding Indonesia",
-        date: "Okt 2024",
-        link: "/certificates/Belajar Dasar Structured Query Language (SQL).pdf",
-        image: "/certificate-images/Belajar Dasar Structured Query Language (SQL).jpg",
-    },
-    {
-        title: "Belajar Dasar AI",
-        issuer: "Dicoding Indonesia",
-        date: "Sep 2024",
-        link: "/certificates/Belajar Dasar AI.pdf",
-        image: "/certificate-images/Belajar Dasar AI.jpg",
-    },
-    {
-        title: "Belajar Dasar Manajemen Proyek",
-        issuer: "Dicoding Indonesia",
-        date: "Sep 2024",
-        link: "/certificates/Belajar Dasar Manajemen Proyek.pdf",
-        image: "/certificate-images/Belajar Dasar Manajemen Proyek.jpg",
-    },
-    {
-        title: "Operator Komputer Madya (VSGA)",
-        issuer: "Digital Talent Scholarship",
-        date: "Agu 2024",
-        link: "/certificates/Operator Komputer Madya VSGA.pdf",
-        image: "/certificate-images/Operator Komputer Madya VSGA.jpg",
-    },
-    {
-        title: "Junior Web Developer (VSGA)",
-        issuer: "Kominfo",
-        date: "Jul 2024",
-        link: "/certificates/Junior Web Developer VSGA.pdf",
-        image: "/certificate-images/Junior Web Developer VSGA.jpg",
-    },
-    {
-        title: "Java Fundamentals",
-        issuer: "Oracle",
-        date: "Jun 2024",
-        link: "/certificates/JAVA FUNDAMENTALS.pdf",
-        image: "/certificate-images/JAVA FUNDAMENTALS.jpg",
-    },
-    {
-        title: "Belajar Dasar Pemrograman Web",
-        issuer: "Dicoding Indonesia",
-        date: "Nov 2023",
-        link: "/certificates/Belajar Dasar Pemrograman Web.pdf",
-        image: "/certificate-images/Belajar Dasar Pemrograman Web.jpg",
-    },
 ];
 
 const techStack = {
@@ -347,31 +257,10 @@ const ProjectCard = ({ project }) => {
 function ProjectSection() {
   const [activeTab, setActiveTab] = useState('Projects');
   const [projectCategory, setProjectCategory] = useState('Web/Apps');
-  const [previewCertificate, setPreviewCertificate] = useState(null);
   const { hideNavbar, showNavbar } = useNavbar();
-
-  // === CHANGE START: State y constante para Show More/Less ===
-  const INITIAL_CERTIFICATES_TO_SHOW = 6;
-  const [visibleCertificatesCount, setVisibleCertificatesCount] = useState(INITIAL_CERTIFICATES_TO_SHOW);
-  // === CHANGE END ===
-
-  useEffect(() => {
-    if (previewCertificate) {
-      hideNavbar();
-    } else {
-      showNavbar();
-    }
-  }, [previewCertificate, hideNavbar, showNavbar]);
-
-  useEffect(() => {
-    return () => {
-      showNavbar();
-    };
-  }, [showNavbar]);
 
   const tabs = [
     { id: 'Projects', label: 'Proyectos', icon: <PiCodeBold className="text-[1.7em] mb-1" /> },
-    { id: 'Certificate', label: 'Certificados', icon: <LuBadge className="text-[1.5em] mb-1" /> },
     { id: 'Tech Stack', label: 'Tech Stack', icon: <LiaLayerGroupSolid className="text-[1.5em] mb-1" /> },
   ];
 
@@ -379,18 +268,8 @@ function ProjectSection() {
     (p) => p.category === projectCategory
   );
 
-  // === CHANGE START: Handler para botón Show More/Less ===
-  const handleShowMore = () => {
-    setVisibleCertificatesCount(userCertificates.length);
-  };
-
-  const handleShowLess = () => {
-    setVisibleCertificatesCount(INITIAL_CERTIFICATES_TO_SHOW);
-  };
-  // === CHANGE END ===
-
   return (
-    <section id="project" className="py-20">
+    <section id="project" className="py-20 mt-80">
       
       <style>{`
         @keyframes line-shadow-anim { 0% { background-position: 0 0; } 100% { background-position: 100% 100%; } }
@@ -404,7 +283,7 @@ function ProjectSection() {
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, amount: 0.2 }}
         transition={{ duration: 0.6, ease: "easeOut" }}
-        className="flex justify-center mb-8"
+        className="flex justify-center mb-8 mt-16"
       >
         <div 
           className="relative flex items-center justify-center bg-transparent"
@@ -437,14 +316,14 @@ function ProjectSection() {
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, amount: 0.2 }}
         transition={{ duration: 0.6, ease: "easeOut", delay: 0.2 }}
-        className="flex justify-center mb-8"
+        className="flex justify-center mb-8 mt-8"
       >
         <div 
           className="relative flex items-center justify-center bg-transparent"
           style={{
             width: 'fit-content',
             minWidth: '1000px',
-            height: '400px',
+            height: '100px',
             fontSize: '100px',
             fontWeight: 'bold',
             fontFamily: 'Arial',
@@ -458,7 +337,7 @@ function ProjectSection() {
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, amount: 0.2 }}
         transition={{ duration: 0.8, ease: "easeOut" }}
-        className="text-center mb-20"
+        className="text-center mb-20 mt-12"
       >
         <h2 className="text-4xl font-bold font-moderniz">
             <span style={{color: "#00ffdc"}}><LineShadowText shadowColor="#00b3a4">PORTAFOLIO</LineShadowText></span>
@@ -529,43 +408,6 @@ function ProjectSection() {
                   </div>
                 </>
               )}
-              {activeTab === 'Certificate' && (
-                <div className="space-y-8">
-                  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
-                    {/* === CHANGE: Usar slice para mostrar certificados visibles === */}
-                    <AnimatePresence>
-                      {userCertificates.slice(0, visibleCertificatesCount).map((cert, i) => (
-                        <CertificateCard key={i} cert={cert} onClick={setPreviewCertificate} />
-                      ))}
-                    </AnimatePresence>
-                  </div>
-                  {/* === CHANGE START: Agregar botón Show More/Less condicionalmente === */}
-                  {userCertificates.length > INITIAL_CERTIFICATES_TO_SHOW && (
-                    <div className="flex justify-center mt-12">
-                      {visibleCertificatesCount < userCertificates.length ? (
-                        <motion.button
-                          onClick={handleShowMore}
-                          className="group bg-gradient-to-r from-cyan-600 to-emerald-600 hover:from-cyan-500 hover:to-emerald-500 px-8 py-3 rounded-full text-white font-semibold transition-all duration-300 shadow-lg hover:shadow-cyan-500/25"
-                          whileHover={{ scale: 1.05 }}
-                          whileTap={{ scale: 0.95 }}
-                        >
-                          Ver Más
-                        </motion.button>
-                      ) : (
-                        <motion.button
-                          onClick={handleShowLess}
-                          className="group bg-gradient-to-r from-slate-700 to-slate-800 hover:from-slate-600 hover:to-slate-700 px-8 py-3 rounded-full text-white font-semibold transition-all duration-300 shadow-lg"
-                          whileHover={{ scale: 1.05 }}
-                          whileTap={{ scale: 0.95 }}
-                        >
-                          Ver Menos
-                        </motion.button>
-                      )}
-                    </div>
-                  )}
-                  {/* === CHANGE END === */}
-                </div>
-              )}
               {activeTab === 'Tech Stack' && (
                 <div className="max-w-4xl mx-auto space-y-8">
                   {Object.entries(techStack).map(([category, techs]) => (
@@ -587,15 +429,6 @@ function ProjectSection() {
           </AnimatePresence>
         </div>
       </div>
-      
-      <AnimatePresence>
-        {previewCertificate && (
-          <CertificatePreviewModal 
-            certificate={previewCertificate}
-            onClose={() => setPreviewCertificate(null)}
-          />
-        )}
-      </AnimatePresence>
     </section>
   );
 }

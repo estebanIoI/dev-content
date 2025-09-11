@@ -221,7 +221,7 @@ const Contact = () => {
                     <FaPaperPlane className="text-white text-xl" />
                   </div>
                   <div>
-                    <h3 className="text-2xl font-bold text-white">Contáctame</h3>
+                    <h3 className="text-2xl font-bold text-white">Contáctanos</h3>
                     <p className="text-slate-400">¿Tienes algo que discutir? ¡Envíame un mensaje!</p>
                   </div>
                 </div>

@@ -10,9 +10,8 @@ import Skills from './components/Skills';
 import { ButtonMovingBorder } from './components/MovingBorderButton';
 import { motion } from "framer-motion";
 // Tambahkan FaCube untuk ikon tombol
-import { FaGithub, FaInstagram, FaLinkedin, FaDownload, FaBriefcase, FaCode, FaCertificate, FaGlobe, FaArrowRight, FaCube } from 'react-icons/fa';
+import { FaGithub, FaInstagram, FaLinkedin, FaDownload, FaBriefcase, FaCode, FaCertificate, FaGlobe, FaArrowRight, FaCube, FaEnvelope } from 'react-icons/fa';
 import ProfileCard from './components/ProfileCard/ProfileCard';
-import ZAINFIX from './assets/images/ZAINFIX.png';
 import { IconCloud } from './components/IconCloud';
 import Spline from '@splinetool/react-spline';
 import { VelocityScroll } from './components/VelocityScroll';
@@ -33,7 +32,6 @@ function App() {
   // Data para card estadísticas
   const stats = [
     { icon: <FaCode />, value: "13", title: "TOTAL PROYECTOS", description: "Soluciones web innovadoras creadas" },
-    { icon: <FaCertificate />, value: "13", title: "CERTIFICADOS", description: "Habilidades profesionales validadas" },
     { icon: <FaGlobe />, value: "3", title: "AÑOS DE EXPERIENCIA", description: "Viaje continuo de aprendizaje" },
   ];
 
@@ -166,8 +164,8 @@ function App() {
                     "si puedes imaginarlo, puedes programarlo."
                   </div>
                   <div className="flex flex-row sm:flex-row gap-4 mt-8 justify-center md:justify-start items-center">
-                    <ButtonMovingBorder as="a" href="/cv.pdf" download duration={3000} borderRadius="0.75rem" className="bg-slate-900/[0.8] border border-slate-800 text-white font-semibold flex items-center justify-center gap-2 transition-all duration-300 hover:shadow-[0_0_24px_8px_#40ffaa]">
-                      <FaDownload /> Descargar CV
+                    <ButtonMovingBorder as="a" href="#contact" duration={3000} borderRadius="0.75rem" className="bg-slate-900/[0.8] border border-slate-800 text-white font-semibold flex items-center justify-center gap-2 transition-all duration-300 hover:shadow-[0_0_24px_8px_#40ffaa]">
+                      <FaEnvelope /> Contactanos
                     </ButtonMovingBorder>
                     <ButtonMovingBorder as="a" href="#projects" duration={3000} borderRadius="0.75rem" className="bg-slate-900/[0.8] border border-slate-800 text-white font-semibold flex items-center justify-center gap-2 transition-all duration-300 hover:shadow-[0_0_24px_8px_#40ffaa]">
                       <FaBriefcase /> Ver Proyectos

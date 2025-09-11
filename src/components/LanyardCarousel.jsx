@@ -12,7 +12,7 @@ const LanyardCarousel = ({ is3dEnabled = true }) => {
   const lanyardConfigs = [
     {
       id: 1,
-      name: "",
+      name: "DESARROLLADORES",
       position: [0, 0, 15],
       gravity: [0, -40, 0],
       fov: 18,
@@ -21,7 +21,7 @@ const LanyardCarousel = ({ is3dEnabled = true }) => {
     },
     {
       id: 2,
-      name: "",
+      name: "DESARROLLADORES",
       position: [0, 0, 12],
       gravity: [0, -35, 0],
       fov: 20,
@@ -30,7 +30,7 @@ const LanyardCarousel = ({ is3dEnabled = true }) => {
     },
     {
       id: 3,
-      name: "",
+      name: "DESARROLLADORES",
       position: [0, 0, 18],
       gravity: [0, -45, 0],
       fov: 16,
@@ -39,7 +39,7 @@ const LanyardCarousel = ({ is3dEnabled = true }) => {
     },
     {
       id: 4,
-      name: "",
+      name: "DESARROLLADORES",
       position: [0, 0, 14],
       gravity: [0, -42, 0],
       fov: 19,
